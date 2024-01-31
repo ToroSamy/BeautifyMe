@@ -1,0 +1,5 @@
+join-broadcast:
+  title: "1"
+  subtitle: "2"
+join-message: "&e玩家激动地加入了服务器"
+quit-message: "&e玩家匆匆地离开了服务器"

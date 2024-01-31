@@ -1,0 +1,4 @@
+name: EssentialYwY
+version: '1.0-SNAPSHOT'
+main: net.torosamy.essentialywy.EssentialYwY
+api-version: '1.20'

@@ -1,0 +1,13 @@
+ColorYwY:
+  enabled: true
+  func:
+    scoreboard: true
+    broadcast: false
+noFuncPlugin:
+  enabled: false
+WelcomeYwY:
+  enabled: true
+  func:
+    join-message: true
+    join-broadcast: false
+    quit-message: true
