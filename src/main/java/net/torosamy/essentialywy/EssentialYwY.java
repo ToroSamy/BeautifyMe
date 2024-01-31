@@ -11,8 +11,12 @@ import net.torosamy.essentialywy.utils.DataManager;
 
 
 import net.torosamy.essentialywy.utils.commands.reloadConfig;
+import net.torosamy.essentialywy.welcome.WelcomeYwY;
+import net.torosamy.essentialywy.welcome.WelcomeYwYCommands;
+import net.torosamy.essentialywy.welcome.WelcomeYwYListener;
+
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.YamlConfiguration;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -21,22 +25,25 @@ public final class EssentialYwY extends JavaPlugin {
     ;
 
 
-    private static Map<String, Plugin> funcStartList;
+    private static Map<String, Plugin> pluginList;
 
 
     private static Map<String, String> lang;
 
     public void onEnable() {
         mainPlugin = this;
-        funcStartList = new HashMap<>();
+        pluginList = new HashMap<>();
 
         lang = new HashMap<>();
         Objects.requireNonNull(Bukkit.getPluginCommand("essy")).setExecutor(new reloadConfig());
+        Objects.requireNonNull(Bukkit.getPluginCommand("wcy")).setExecutor(new WelcomeYwYCommands());
+        getServer().getPluginManager().registerEvents(new WelcomeYwYListener(),this);
 
         saveDefaultConfig();
         DataManager.initFuncList();
         DataManager.loadLang();
 
+        WelcomeYwY.loadConfig();
     }
 
 
@@ -48,8 +55,8 @@ public final class EssentialYwY extends JavaPlugin {
         return mainPlugin;
     }
 
-    public static Map<String, Plugin> getFuncStartList() {
-        return funcStartList;
+    public static Map<String, Plugin> getPluginList() {
+        return pluginList;
     }
 
     public static Map<String, String> getLang() {

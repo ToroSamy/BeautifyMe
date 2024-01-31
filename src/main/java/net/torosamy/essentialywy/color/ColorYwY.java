@@ -1,9 +1,15 @@
 package net.torosamy.essentialywy.color;
 
 
-import net.torosamy.essentialywy.pojo.Plugin;
 
-public class ColorYwY extends Plugin {
+import org.bukkit.event.Listener;
+
+
+public class ColorYwY implements Listener {
+
+
+
+
     private static ColorYwY colorYwY;
 
     public static ColorYwY getColorYwY() {

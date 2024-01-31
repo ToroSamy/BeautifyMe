@@ -26,7 +26,7 @@ public class DataManager {
     }
 
     public static void initFuncList() {
-        EssentialYwY.getFuncStartList().clear();
+        EssentialYwY.getPluginList().clear();
         for (String pluginName : EssentialYwY.getMainPlugin().getConfig().getKeys(false)) {
             Plugin plugin = new Plugin();
             plugin.setPluginName(pluginName);
@@ -46,7 +46,7 @@ public class DataManager {
             }
 
 
-            EssentialYwY.getFuncStartList().put(pluginName, plugin);
+            EssentialYwY.getPluginList().put(pluginName, plugin);
         }
     }
 

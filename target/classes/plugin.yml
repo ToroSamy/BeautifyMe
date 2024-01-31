@@ -6,7 +6,9 @@ commands:
   essy:
     usage: /essy reload
     permission: essentialywy.reload
-    permission-message: "No permission"
+  wcy:
+    usage: /wcy reload
+    permission: essentialywy.reload.welcome
 permissions:
   essentialywy.*:
     description: "All permissions of this plugin"
@@ -14,3 +16,6 @@ permissions:
   essentialywy.reload:
     description: "to reload"
     default: op
+  essentialywy.reload.welcome:
+    default: op
+    description: "to reload welcome"
