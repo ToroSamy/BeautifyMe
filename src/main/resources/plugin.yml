@@ -2,3 +2,15 @@ name: EssentialYwY
 version: '${project.version}'
 main: net.torosamy.essentialywy.EssentialYwY
 api-version: '1.20'
+commands:
+  essy:
+    usage: /essy reload
+    permission: essentialywy.reload
+    permission-message: "No permission"
+permissions:
+  essentialywy.*:
+    description: "All permissions of this plugin"
+    default: op
+  essentialywy.reload:
+    description: "to reload"
+    default: op

@@ -6,6 +6,7 @@ import java.util.*;
 
 import net.torosamy.essentialywy.EssentialYwY;
 import net.torosamy.essentialywy.pojo.Plugin;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -17,7 +18,7 @@ public class DataManager {
         if (configurationSection != null) {
             configurationSection.getKeys(false).forEach(funcName -> {
                 funcList.put(funcName, EssentialYwY.getMainPlugin().getConfig().getBoolean(plugin + ".func." + funcName));
-                EssentialYwY.log.info(ColorUtils.text(funcName + "功能加载成功"));
+                Bukkit.getConsoleSender().sendMessage(MessageUtils.text(funcName + "功能加载成功"));
             });
         }
 
@@ -25,6 +26,7 @@ public class DataManager {
     }
 
     public static void initFuncList() {
+        EssentialYwY.getFuncStartList().clear();
         for (String pluginName : EssentialYwY.getMainPlugin().getConfig().getKeys(false)) {
             Plugin plugin = new Plugin();
             plugin.setPluginName(pluginName);
@@ -33,14 +35,14 @@ public class DataManager {
             plugin.setFunc(func);
 
             plugin.setConfig(loadConfigAsFile(pluginName));
-            EssentialYwY.log.info(ColorUtils.text(pluginName + "配置加载成功"));
+            Bukkit.getConsoleSender().sendMessage(MessageUtils.text(pluginName + "配置加载成功"));
 
             if (EssentialYwY.getMainPlugin().getConfig().getBoolean(pluginName + ".enabled")) {
                 plugin.setEnabled(true);
-                EssentialYwY.log.info(ColorUtils.text("[EssentialYwY]" + pluginName + " started successfully"));
+                Bukkit.getConsoleSender().sendMessage(MessageUtils.text("[EssentialYwY]" + pluginName + " started successfully"));
             } else {
                 plugin.setEnabled(false);
-                EssentialYwY.log.info("[EssentialYwY]" + pluginName + " successfully closed");
+                Bukkit.getConsoleSender().sendMessage("[EssentialYwY]" + pluginName + " successfully closed");
             }
 
 
@@ -56,5 +58,24 @@ public class DataManager {
             EssentialYwY.getMainPlugin().saveResource("func/" + pluginName + ".yml", false);
         }
         return YamlConfiguration.loadConfiguration(file);
+    }
+
+    public static void loadLang() {
+        File file = new File(EssentialYwY.getMainPlugin().getDataFolder(), "lang.yml");
+        if (!file.exists()) {
+            EssentialYwY.getMainPlugin().saveResource("lang.yml", false);
+        }
+        YamlConfiguration langFile = YamlConfiguration.loadConfiguration(file);
+        langFile.getKeys(true).forEach(message -> {
+            String[] split = message.split("\\.");
+            EssentialYwY.getLang().put(split[split.length - 1], langFile.getString(message));
+        });
+
+    }
+
+    public static void reloadConfig() {
+        EssentialYwY.getMainPlugin().reloadConfig();
+        initFuncList();
+        loadLang();
     }
 }

@@ -1,0 +1,5 @@
+reload:
+  reload-successfully: "&b[服务器娘]&a重载成功喵~~"
+  parameter-error: "&b[服务器娘]&c参数错误"
+  spell-error: "&b[服务器娘]&c拼写错误捏 输入的不是reload"
+
