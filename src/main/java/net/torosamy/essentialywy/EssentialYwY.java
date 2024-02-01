@@ -37,13 +37,17 @@ public final class EssentialYwY extends JavaPlugin {
         lang = new HashMap<>();
         Objects.requireNonNull(Bukkit.getPluginCommand("essy")).setExecutor(new reloadConfig());
         Objects.requireNonNull(Bukkit.getPluginCommand("wcy")).setExecutor(new WelcomeYwYCommands());
-        getServer().getPluginManager().registerEvents(new WelcomeYwYListener(),this);
+//        getServer().getPluginManager().registerEvents(new WelcomeYwYListener(),this);
 
         saveDefaultConfig();
         DataManager.initFuncList();
         DataManager.loadLang();
 
+        //配置文件都要提前加载好
         WelcomeYwY.loadConfig();
+        pluginList.forEach((pluginName,plugin)->{
+
+        });
     }
 
 

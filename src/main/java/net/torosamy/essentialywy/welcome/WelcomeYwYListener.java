@@ -10,19 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class WelcomeYwYListener implements Listener {
 
-    @EventHandler
-    public boolean playerOnJoin(PlayerJoinEvent event) {
-        if (!EssentialYwY.getPluginList().get("WelcomeYwY").isEnabled()) {
-            return true;
-        }
-        if (EssentialYwY.getPluginList().get("WelcomeYwY").getFunc().get("join-message")) {
-            event.setJoinMessage(MessageUtils.text(WelcomeYwY.getJoinMessage()));
-        }
-        if (EssentialYwY.getPluginList().get("WelcomeYwY").getFunc().get("join-broadcast")){
-            Player player = event.getPlayer();
-        }
-        return true;
-    }
+
     @EventHandler
     public boolean playerOnQuit(PlayerQuitEvent event) {
         if (!EssentialYwY.getPluginList().get("WelcomeYwY").isEnabled()) {
