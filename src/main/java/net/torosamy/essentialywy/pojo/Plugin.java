@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.PrimitiveIterator;
 
 public class Plugin {
+    //插件是否启用
     private boolean enabled;
+    //插件功能
     private Map<String,Boolean> func;
 
 

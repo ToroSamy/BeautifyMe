@@ -1,2 +1,5 @@
-scoreboard-off: []
-broadcast-off: []
+scoreboard: []
+broadcast:
+  - yweiyang
+tabList: []
+bossbar: []

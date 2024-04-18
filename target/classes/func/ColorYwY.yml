@@ -1,6 +1,7 @@
 broadcast:
   #单位：秒
   time: 3
+  remember-toggle-choice: true
   messages:
     text1:
       - "&a这是第一行信息"
@@ -12,19 +13,43 @@ broadcast:
 
 
 scoreboard:
+  #单位：秒
+  time: 5
   remember-toggle-choice: true
   scoreboards:
     title: "云间幽谷"
     lines:
-      - '&7%date%'
-      - '%animation:MyAnimation1%'
-      - '&6Online:'
-      - '* &eOnline&7:||%online%'
-      - '* &eCurrent World&7:||%worldonline%'
-      - '* &eStaff&7:||%staffonline%'
-      - ''
-      - '&6Personal Info:'
-      - '* &bRank&7:||%group%'
-      - '* &bPing&7:||%ping%&8ms'
-      - '* &bWorld&7:||%world%'
-      - '%animation:MyAnimation1%'
+      - '&a这是第1行&b&l信息'
+      - '&a这是第2行&b&l信息'
+      - '&6&m              '
+      - '&a这是第3行&b&l信息'
+
+tabList:
+  time: 5
+  remember-toggle-choice: true
+  header:
+    - "&a这是第一行"
+    - "&b这是第二行"
+  footer:
+    - "&a这是第一行"
+    - "&b这是第二行"
+  nameList: "&b&l[云间官方]&f%player_name%&6&l[龙猫服主]"
+
+
+bossbar:
+  time: 5
+  remember-toggle-choice: true
+  info:
+#    SEGMENTED_10
+#    将血条分为10个部分
+#    SEGMENTED_12
+#    将血条分为12个部分
+#    SEGMENTED_20
+#    将血条分为20个部分
+#    SEGMENTED_6
+#    将血条分为6个部分
+#    SOLID
+#    将血条设置为一个部分
+    style: "SOLID"
+    color: WHITE # 仅限 1.9+ 服务器: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+    text: "&e快加群:&6882535365 &e参加公会比赛吧! ✧*｡٩(ˊᗜˋ*)و✧*｡"

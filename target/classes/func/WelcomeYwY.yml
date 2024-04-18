@@ -1,5 +1,32 @@
 join-broadcast:
   title: "1"
   subtitle: "2"
+join-event:
+  - "[message] &a发送了一条信息"
+  - "[allMessage] &a向所有在线的人发送了信息"
+  - "[console] say hello"
+  - "[player] 1"
+quit-event:
+  - "[message] &a发送了一条信息"
+  - "[allMessage] &a向所有在线的人发送了信息"
+  - "[console] say hello"
+#退出了服务器就不能运行指令了
+#  - "[player] 1"
 join-message: "&e玩家激动地加入了服务器"
 quit-message: "&e玩家匆匆地离开了服务器"
+first-Join-welcome:
+  #欢迎关键词，包含这些就可以获得奖励
+  key:
+    - "欢迎"
+  #新玩家进服，其他玩家在多少时间内欢迎才可获得奖励
+  Time: 30
+  Action:
+    - "[message] &a发送了一条信息"
+    - "[allMessage] &a向所有在线的人发送了信息"
+    - "[console] say hello"
+    - "[player] 1"
+  FirstJoinAction:
+    - "[message] &a发送了一条信息"
+    - "[allMessage] &a向所有在线的人发送了信息"
+    - "[console] say hello"
+    - "[player] 1"

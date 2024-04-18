@@ -1,0 +1,12 @@
+#不支持Papi变量 因为是自己用也懒得写变量
+total-help:
+  - "&a目前只有一个"
+  - "&b/essy reload&7重载插件"
+wel-help:
+  - "&f/wel title 信息1 信息2-----&7向在线的所有人发送大Title"
+  - "&f/wel title 信息1 信息2 玩家名-----&7向指定玩家发送大Title"
+col-help:
+  - "&a/col toggle bossbar 开关闭bossbar"
+  - "&a/col toggle scoreboard 开关闭计分板"
+  - "&a/col toggle tablist  开关闭tablist"
+  - "&a/col toggle broadcast 开关闭自动公告"

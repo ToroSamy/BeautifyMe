@@ -1,13 +1,27 @@
 ColorYwY:
   enabled: true
   func:
+#    计分板
     scoreboard: true
-    broadcast: false
+#    广播
+    broadcast: true
+#    Tab列表
+    tabList: true
+    bossbar: true
 noFuncPlugin:
   enabled: false
 WelcomeYwY:
   enabled: true
   func:
+    #上线信息提示
     join-message: true
-    join-broadcast: false
+    #下线信息提示
     quit-message: true
+    #进服大Title修改
+    join-broadcast: true
+    #上线\下线触发的功能是否启用
+    join-event: true
+    quit-event: true
+    #进服欢迎奖励
+    first-join-welcome: true
+#这个配置文件关于插件描述了插件是否启用

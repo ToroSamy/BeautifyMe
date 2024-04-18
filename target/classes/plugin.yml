@@ -2,20 +2,31 @@ name: EssentialYwY
 version: '1.0-SNAPSHOT'
 main: net.torosamy.essentialywy.EssentialYwY
 api-version: '1.20'
+softdepend:
+  - PlaceholderAPI
 commands:
   essy:
-    usage: /essy reload
-    permission: essentialywy.reload
-  wcy:
-    usage: /wcy reload
-    permission: essentialywy.reload.welcome
+    usage: /essy <?>
+    permission: essentialywy.*
+  wel:
+    usage: /wel <?>
+    permission: essentialywy.plugin.wel
+  col:
+    usage: /col <?>
+    permission: essentialywy.plugin.col
 permissions:
   essentialywy.*:
     description: "All permissions of this plugin"
     default: op
   essentialywy.reload:
-    description: "to reload"
+    description: "to reload this plugin"
     default: op
-  essentialywy.reload.welcome:
+  essentialywy.plugin.col.*:
     default: op
-    description: "to reload welcome"
+    description: "All permssions of this plugin"
+  essentialywy.plugin.col.broadcast:
+    default: true
+    description: "choice to broadcast"
+  essentialywy.plugin.col.scoreboard:
+    default: true
+    description: "choice to scoreboard"
