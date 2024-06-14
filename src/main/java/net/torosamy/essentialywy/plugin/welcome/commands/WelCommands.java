@@ -1,10 +1,9 @@
-package net.torosamy.essentialywy.welcome;
+package net.torosamy.essentialywy.plugin.welcome.commands;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.torosamy.essentialywy.EssentialYwY;
 import net.torosamy.essentialywy.utils.MessageUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -5,14 +5,15 @@ import java.util.*;
 
 import net.torosamy.essentialywy.pojo.Plugin;
 
-import net.torosamy.essentialywy.utils.DataManager;
+import net.torosamy.essentialywy.manager.DataManager;
 
 import net.torosamy.essentialywy.utils.MessageUtils;
-import net.torosamy.essentialywy.utils.PluginManager;
-import net.torosamy.essentialywy.utils.commands.reloadConfig;
+import net.torosamy.essentialywy.manager.PluginManager;
+import net.torosamy.essentialywy.commands.reloadConfig;
 import org.bukkit.Bukkit;
 
 
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -26,6 +27,7 @@ public final class EssentialYwY extends JavaPlugin {
     }
     private static Map<String,List<String>> langHelp = new HashMap<>();
     private static Map<String, List<String>> playerData = new HashMap<>();
+    private static YamlConfiguration playerDataFile;
     public void onEnable() {
         mainPlugin = this;
 
@@ -39,17 +41,11 @@ public final class EssentialYwY extends JavaPlugin {
         saveDefaultConfig();
 
 
-
-
         DataManager.reloadConfig();
         PluginManager.initPlugin();
         PluginManager.reloadPlugin();
 
 
-
-//        ColorYwY.getBroadcastText().forEach(textList->{
-//            textList.forEach(line->Bukkit.getConsoleSender().sendMessage(MessageUtils.text(line)));
-//        });
     }
 
 
@@ -69,5 +65,11 @@ public final class EssentialYwY extends JavaPlugin {
         return playerData;
     }
 
+    public static YamlConfiguration getPlayerDataFile() {
+        return playerDataFile;
+    }
+    public static void setPlayerDataFile(YamlConfiguration config) {
+        EssentialYwY.playerDataFile = config;
+    }
 }
 

@@ -1,9 +1,10 @@
-package net.torosamy.essentialywy.color;
+package net.torosamy.essentialywy.plugin.color;
 
 
 import net.torosamy.essentialywy.EssentialYwY;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,7 +23,6 @@ public class ColorYwY implements Listener {
     private static Boolean rememberScoreBoardToggle;
     private static String scoreBoardTitle;
     private static List<String> ScoreBoardLines;
-    private static Listener scoreBoardListener;
     private static BukkitTask scoreBoardClockTask;
     private static Integer scoreBoardTime;
 
@@ -30,7 +30,6 @@ public class ColorYwY implements Listener {
     //自动公告
     private static Boolean rememberBroadcastToggle;
     private static BukkitTask broadcastClockTask;
-    private static Listener broadcastListener;
     private static Integer broadcastTime;
     private static List<List<String>> broadcastText;
 
@@ -164,12 +163,6 @@ public class ColorYwY implements Listener {
     public static List<List<String>> getBroadcastText() {
         return broadcastText;
     }
-    public static Listener getBroadcastListener() {
-        return broadcastListener;
-    }
-    public static void setBroadcastListener(Listener broadcastListener) {
-        ColorYwY.broadcastListener = broadcastListener;
-    }
     public static Integer getBroadcastTime() {
         return broadcastTime;
     }
@@ -190,12 +183,6 @@ public class ColorYwY implements Listener {
     }
     public static void setScoreBoardClockTask(BukkitTask scoreBoardClockTask) {
         ColorYwY.scoreBoardClockTask = scoreBoardClockTask;
-    }
-    public static Listener getScoreBoardListener() {
-        return scoreBoardListener;
-    }
-    public static void setScoreBoardListener(Listener scoreBoardListerer) {
-        scoreBoardListener = scoreBoardListerer;
     }
     public static Integer getScoreBoardTime() {
         return scoreBoardTime;

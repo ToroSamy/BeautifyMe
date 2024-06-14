@@ -2,6 +2,7 @@ name: EssentialYwY
 version: '1.0-SNAPSHOT'
 main: net.torosamy.essentialywy.EssentialYwY
 api-version: '1.20'
+authors: [yweiyang]
 softdepend:
   - PlaceholderAPI
 commands:
@@ -10,10 +11,16 @@ commands:
     permission: essentialywy.*
   wel:
     usage: /wel <?>
-    permission: essentialywy.plugin.wel
+    permission: essentialywy.plugin.wel.use
   col:
     usage: /col <?>
-    permission: essentialywy.plugin.col
+    permission: essentialywy.plugin.col.use
+  spawn:
+    usage: /spawn
+    permission: essentialywy.plugin.spawn.spawn
+  setspawn:
+    usage: /setspawn
+    permission: essentialywy.plugin.spawn.setspawn
 permissions:
   essentialywy.*:
     description: "All permissions of this plugin"
@@ -21,12 +28,24 @@ permissions:
   essentialywy.reload:
     description: "to reload this plugin"
     default: op
-  essentialywy.plugin.col.*:
-    default: op
-    description: "All permssions of this plugin"
+  essentialywy.plugin.col.use:
+    default: true
+    description: "if player can use color"
   essentialywy.plugin.col.broadcast:
     default: true
     description: "choice to broadcast"
   essentialywy.plugin.col.scoreboard:
     default: true
     description: "choice to scoreboard"
+  essentialywy.plugin.col.remember.broadcast:
+    default: op
+    description: "if can save toggle"
+  essentialywy.plugin.wel.use:
+    default: op
+    description: "if can save toggle"
+  essentialywy.plugin.spawn.spawn:
+    default: true
+    description: "use to spawn respawn location"
+  essentialywy.plugin.spawn.setspawn:
+    default: op
+    description: "admin use to set a new respawn location"

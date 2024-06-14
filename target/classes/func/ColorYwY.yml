@@ -1,55 +1,93 @@
 broadcast:
   #单位：秒
-  time: 3
+  time: 300
   remember-toggle-choice: true
   messages:
     text1:
-      - "&a这是第一行信息"
-      - "&b这是第二行&a信息"
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a公会建设大赛火热进行中！快加群报名参加吧！"
+      - "&6&m                                                         "
     text2:
-      - "这是一行信息"
-      - "这是第二行信息"
-
-
-
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a欢迎新玩家进服领取1积分奖励哦!"
+      - "&6&m                                                         "
+    text3:
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a群号:882535365 官网:www.tgcmc.top"
+      - "&6&m                                                         "
+    text4:
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a服务器维护需要大家共同的努力哦,不输入/vip或者/rvip了解一下吗"
+      - "&6&m                                                         "
+    text5:
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a玩服千万条 和谐第一条 言行不规范 封禁直到老"
+      - "&6&m                                                         "
+    text6:
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a女玩家可向服主验证申请&d&l专属头衔*2&a+50积分+5张飞行券"
+      - "&6&m                                                         "
+    text7:
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a在生存服建关于龙猫的&e精美&a建筑 可向管理领取龙猫头哦"
+      - "&6&m                                                         "
+    text8:
+      - "&6&m                                                         "
+      - "&b[服务器娘]&a请仔细保管物品哦!服务器有绑定插件,任何情况下丢失物品不负责!"
+      - "&6&m                                                         "
 scoreboard:
   #单位：秒
   time: 5
   remember-toggle-choice: true
   scoreboards:
-    title: "云间幽谷"
+    title: "&6[ &e云间幽谷 &6]"
     lines:
-      - '&a这是第1行&b&l信息'
-      - '&a这是第2行&b&l信息'
-      - '&6&m              '
-      - '&a这是第3行&b&l信息'
+      - "&6&m                         "
+      - "&6 ▪ &6&l称号&f:&6[&e%vault_prefix%&6]"
+      - "&6 ▪ &6&l公会&f:&6[&e正在维护&6]"
+      - "&6 ▪ &6&l世界&f:&6[&e%multiverse_world_name_colored%&6]"
+      - "&6 ▪ &6&l名称&f:&e%player_name%"
+      - '&6 ▪ &6&l积分&f:&e%vault_eco_balance_fixed%'
+      - "&6 ▪ &6&l血量&f:&e%player_health_rounded%"
+      - "&6 ▪ &6&l饥饿&f:&e%player_food_level%"
+      - "&6 ▪ &6&l等级&f:&e%player_level%"
+      - "&6 ▪ &6&l点券&f:&e%playerpoints_points%"
+      - "&6&m                         "
+      - "&6 ▪ &6官网&f:&e正在维护"
+      - "&6 ▪ &6群号&f:&e882535365"
 
 tabList:
   time: 5
   remember-toggle-choice: true
   header:
-    - "&a这是第一行"
-    - "&b这是第二行"
+    - "&f&m                                   "
+    - "&6云间幽谷"
+    - "&e欢迎玩家:&f%player_name%"
+    - "&6生存在线 &f%server_online% &6全服在线: &f%bungee_total%"
+    - "&f&m                                   "
   footer:
-    - "&a这是第一行"
-    - "&b这是第二行"
-  nameList: "&b&l[云间官方]&f%player_name%&6&l[龙猫服主]"
+    - "&f&m                                   "
+    - "&6服主QQ:&f1364596766"
+    - "&e官网:&f正在维护"
+    - "&6群号:&f882535365"
+    - "&f&m                                                     "
+  nameList: "&6[&e正在维护&6]&f%player_name%&6[&e%vault_prefix%&6]"
 
 
 bossbar:
   time: 5
   remember-toggle-choice: true
   info:
-#    SEGMENTED_10
-#    将血条分为10个部分
-#    SEGMENTED_12
-#    将血条分为12个部分
-#    SEGMENTED_20
-#    将血条分为20个部分
-#    SEGMENTED_6
-#    将血条分为6个部分
-#    SOLID
-#    将血条设置为一个部分
+    #    SEGMENTED_10
+    #    将血条分为10个部分
+    #    SEGMENTED_12
+    #    将血条分为12个部分
+    #    SEGMENTED_20
+    #    将血条分为20个部分
+    #    SEGMENTED_6
+    #    将血条分为6个部分
+    #    SOLID
+    #    将血条设置为一个部分
     style: "SOLID"
     color: WHITE # 仅限 1.9+ 服务器: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
     text: "&e快加群:&6882535365 &e参加公会比赛吧! ✧*｡٩(ˊᗜˋ*)و✧*｡"

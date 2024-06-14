@@ -1,4 +1,4 @@
-package net.torosamy.essentialywy.welcome;
+package net.torosamy.essentialywy.plugin.welcome;
 
 import net.torosamy.essentialywy.EssentialYwY;
 import org.bukkit.configuration.ConfigurationSection;
@@ -11,20 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WelcomeYwY {
-    private static String joinMessage;
-    private static String quitMessage;
+
     private static String titleBroadcast;
     private static String subTitleBroadcast;
     private static Listener welPlayerOnJoin;
     private static Listener welPlayerOnQuit;
     private static List<String> quitActionList;
     private static List<String> JoinActionList;
-
-
-
-
-
-
     private static List<String> firstJoinKey;
     private static Integer firstJoinTime;
     //发送key的player触发的Action
@@ -41,14 +34,13 @@ public class WelcomeYwY {
 
         titleBroadcast = welcomeYwYConfig.getString("join-broadcast.title");
         subTitleBroadcast = welcomeYwYConfig.getString("join-broadcast.subtitle");
-        joinMessage = welcomeYwYConfig.getString("join-message");
-        quitMessage = welcomeYwYConfig.getString("quit-message");
 
         ConfigurationSection configurationSection = welcomeYwYConfig.getConfigurationSection("first-join-welcome");
         if (configurationSection != null) {
             firstJoinKey = configurationSection.getStringList("key");
             firstJoinTime = configurationSection.getInt("Time");
             firstJoinActionList = configurationSection.getStringList("Action");
+            firstJoinAction = configurationSection.getStringList("FirstJoinAction");
         }
 
 
@@ -62,13 +54,6 @@ public class WelcomeYwY {
         return quitActionList;
     }
 
-    public static String getJoinMessage() {
-        return joinMessage;
-    }
-
-    public static String getQuitMessage() {
-        return quitMessage;
-    }
 
     public static String getTitleBroadcast() {
         return titleBroadcast;

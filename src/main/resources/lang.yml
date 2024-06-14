@@ -12,8 +12,6 @@ welcome-message:
   not-found-player: "&b[服务器娘]&c未找到该玩家！"
   send-successfully: "&b[服务器娘]&a发送成功!"
 color-message:
-#  color-reload-successfully: "&b[服务器娘]&a重载成功喵~~"
-
   broadcast-toggle-open: "&b[服务器娘]&a开启成功!"
   broadcast-toggle-close: "&b[服务器娘]&a关闭成功!"
   scoreboard-toggle-open: "&b[服务器娘]&a开启成功!"
@@ -22,3 +20,7 @@ color-message:
   tabList-toggle-close: "&b[服务器娘]&a关闭成功!"
   bossbar-toggle-open: "&b[服务器娘]&a开启成功!"
   bossbar-toggle-close: "&b[服务器娘]&a关闭成功!"
+teleport-message:
+  spawn-successful: "&6成功传送至 &c主城"
+  setspawn-successful: "&b[服务器娘]&a设置成功"
+  spawn-cooldown: "&6传送将在&c3 &6秒内开始，请不要移动。"

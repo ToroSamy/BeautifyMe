@@ -1,9 +1,9 @@
-package net.torosamy.essentialywy.welcome.listener;
+package net.torosamy.essentialywy.plugin.welcome.listener;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.torosamy.essentialywy.EssentialYwY;
 import net.torosamy.essentialywy.utils.MessageUtils;
-import net.torosamy.essentialywy.welcome.WelcomeYwY;
+import net.torosamy.essentialywy.plugin.welcome.WelcomeYwY;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,9 +13,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class WelPlayerOnQuit implements Listener {
     @EventHandler
     public void playerOnQuit(PlayerQuitEvent event) {
-        if (EssentialYwY.getPluginList().get("WelcomeYwY").getFunc().get("quit-message")) {
-            event.setQuitMessage(MessageUtils.text(PlaceholderAPI.setPlaceholders(event.getPlayer(),WelcomeYwY.getQuitMessage())));
-        }
         if (EssentialYwY.getPluginList().get("WelcomeYwY").getFunc().get("quit-event")) {
             for (String action : WelcomeYwY.getQuitActionList()) {
                 if (action.startsWith("[message] ")) {
@@ -29,7 +26,7 @@ public class WelPlayerOnQuit implements Listener {
                     continue;
                 }
                 if (action.startsWith("[console] ")) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),action.replace("[console] ",""));
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),PlaceholderAPI.setPlaceholders(event.getPlayer(),action.replace("[console] ","")));
                     continue;
                 }
 

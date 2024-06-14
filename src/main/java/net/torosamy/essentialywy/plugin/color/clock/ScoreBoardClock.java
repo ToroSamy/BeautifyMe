@@ -1,8 +1,8 @@
-package net.torosamy.essentialywy.color.clock;
+package net.torosamy.essentialywy.plugin.color.clock;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.torosamy.essentialywy.EssentialYwY;
-import net.torosamy.essentialywy.color.ColorYwY;
+import net.torosamy.essentialywy.plugin.color.ColorYwY;
 import net.torosamy.essentialywy.utils.MessageUtils;
 import org.bukkit.Bukkit;
 
@@ -13,8 +13,6 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 
-import java.text.SimpleDateFormat;
-import java.time.temporal.ValueRange;
 import java.util.*;
 
 public class ScoreBoardClock extends BukkitRunnable {

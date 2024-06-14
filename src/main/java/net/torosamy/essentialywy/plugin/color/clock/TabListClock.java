@@ -1,16 +1,13 @@
-package net.torosamy.essentialywy.color.clock;
+package net.torosamy.essentialywy.plugin.color.clock;
 
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.torosamy.essentialywy.EssentialYwY;
-import net.torosamy.essentialywy.color.ColorYwY;
+import net.torosamy.essentialywy.plugin.color.ColorYwY;
 import net.torosamy.essentialywy.utils.MessageUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.concurrent.TimeUnit;
 
 
 public class TabListClock extends BukkitRunnable {
@@ -51,11 +48,7 @@ public class TabListClock extends BukkitRunnable {
 
         }
 
-        long playedTime = System.currentTimeMillis() - player.getFirstPlayed();
 
-
-        Builder.append("\n");
-        Builder.append(playedTime);
         String footer = MessageUtils.text(PlaceholderAPI.setPlaceholders(player, Builder.toString()));
 
 
