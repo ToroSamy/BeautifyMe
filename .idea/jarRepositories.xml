@@ -4,7 +4,7 @@
     <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
-      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="sonatype" />
@@ -15,11 +15,6 @@
       <option name="id" value="papermc-repo" />
       <option name="name" value="papermc-repo" />
       <option name="url" value="https://repo.papermc.io/repository/maven-public/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="placeholderapi" />
-      <option name="name" value="placeholderapi" />
-      <option name="url" value="https://repo.extendedclip.com/content/repositories/placeholderapi/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />

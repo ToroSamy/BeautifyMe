@@ -1,26 +1,67 @@
-#这个配置文件关于插件描述了插件是否启用
-ColorYwY:
-  enabled: true
-  func:
-    #    计分板
-    scoreboard: true
-    #    广播
-    broadcast: true
-    #    Tab列表
-    tabList: true
-    bossbar: true
-WelcomeYwY:
-  enabled: true
-  func:
-    #进服大Title修改
-    join-broadcast: true
-    #上线\下线触发的功能是否启用
-    join-event: false
-    quit-event: false
-    #进服欢迎奖励
-    first-join-welcome: true
-    first-join-event: true
-TeleportYwY:
-  enabled: true
-  func:
-    spawn: true
+broadcast:
+  # 单位：秒
+  time: 300
+  # false 启动服务器默认全部开启
+  # true 根据player-toggle的记录选择是否启用
+  remember-toggle-choice: true
+  messages:
+    text1:
+      - '&6&m                                                         '
+      - '&b[服务器娘]&a群号:882535365 官网:www.tgcmc.top'
+      - '&6&m                                                         '
+    text2:
+      - '&6&m                                                         '
+      - '&b[服务器娘]&a玩服千万条 和谐第一条 言行不规范 封禁直到老'
+      - '&6&m                                                         '
+
+
+scoreboard:
+  # 单位：秒
+  time: 5
+  remember-toggle-choice: true
+  board:
+    title: '&6[ &e云间幽谷 &6]'
+    lines:
+      - '&6&m                         '
+      - '&6 ▪ &6&l名称&f:&e%player_name%'
+      - '&6 ▪ &6&l等级&f:&e%player_level%'
+      - '&6&m                         '
+      - '&6 ▪ &6官网&f:&eserver.torosamy.net'
+      - '&6 ▪ &6群号&f:&e882535365'
+
+
+tab-list:
+  time: 5
+  remember-toggle-choice: true
+  header:
+    - '&f&m                                   '
+    - '&6云间幽谷'
+    - '&e欢迎玩家:&f%player_name%'
+    - '&6生存在线 &f%server_online% &6全服在线: &f%bungee_total%'
+    - '&f&m                                   '
+  footer:
+    - '&f&m                                   '
+    - '&6服主QQ:&f1364596766'
+    - '&e官网:&fserver.torosamy.net'
+    - '&6群号:&f882535365'
+    - '&f&m                                                     '
+  name-list: '&6[&e%vault_prefix%&6]&f%player_name%'
+
+
+bossbar:
+  time: 5
+  remember-toggle-choice: true
+  info:
+    # SEGMENTED_10 将血条分为10个部分
+    # SEGMENTED_12 将血条分为12个部分
+    # SEGMENTED_20 将血条分为20个部分
+    # SEGMENTED_6  将血条分为6个部分
+    # SOLID        将血条设置为一个部分
+    style: SOLID
+    color: WHITE # 仅限 1.9+ 服务器: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+    text: '&e快加群:&6882535365 &e参加公会比赛吧! ✧*｡٩(ˊᗜˋ*)و✧*｡'
+
+
+join-broadcast:
+  title: '&6&l生存服'
+  sub-title: '&e&l欢迎来到&6&l云间幽谷&e&l纯净服务器'
