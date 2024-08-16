@@ -3,6 +3,7 @@ package net.torosamy.beautifyMe.utils
 import net.torosamy.beautifyMe.BeautifyMe
 import net.torosamy.beautifyMe.scheduler.BroadcastTask
 import net.torosamy.beautifyMe.scheduler.ScoreboardTask
+import net.torosamy.beautifyMe.scheduler.TabListTask
 import org.bukkit.Bukkit
 import org.bukkit.scheduler.BukkitTask
 
@@ -13,23 +14,33 @@ class SchedulerUtil {
     companion object {
         private lateinit var broadcastTask: BukkitTask
         private lateinit var scoreboardTask: BukkitTask
+        private lateinit var tabListTask: BukkitTask
         fun registerScheduler() {
             registerBroadcast()
             registerScoreboard()
+            registerTabList()
         }
 
+        fun registerTabList() {
+            if (::tabListTask.isInitialized && !tabListTask.isCancelled) {
+                tabListTask.cancel()
+                Bukkit.getOnlinePlayers().forEach(TabListTask::clearTabList)
+            }
+            if (!ConfigUtil.getMainConfig().tabList.enabled) return
+            tabListTask = TabListTask().runTaskTimer(
+                BeautifyMe.plugin, 0L,
+                ConfigUtil.getMainConfig().tabList.time * 20L
+            )
+        }
 
         fun registerScoreboard() {
             if (::scoreboardTask.isInitialized && !scoreboardTask.isCancelled) {
                 scoreboardTask.cancel()
                 Bukkit.getOnlinePlayers().forEach(ScoreboardTask::clearScoreboard)
             }
-            //如果该功能不开启
             if (!ConfigUtil.getMainConfig().scoreboard.enabled) return
-
             scoreboardTask = ScoreboardTask().runTaskTimer(
-                BeautifyMe.plugin,
-                0L,
+                BeautifyMe.plugin, 0L,
                 ConfigUtil.getMainConfig().scoreboard.time * 20L
             )
         }
@@ -42,8 +53,7 @@ class SchedulerUtil {
             //如果该功能不开启
             if (!ConfigUtil.getMainConfig().broadcast.enabled) return
             broadcastTask = BroadcastTask().runTaskTimerAsynchronously(
-                BeautifyMe.plugin,
-                0L,
+                BeautifyMe.plugin, 0L,
                 ConfigUtil.getMainConfig().broadcast.time * 20L
             )
         }

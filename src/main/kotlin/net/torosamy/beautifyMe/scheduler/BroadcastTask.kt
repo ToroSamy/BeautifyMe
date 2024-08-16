@@ -14,16 +14,21 @@ class BroadcastTask : BukkitRunnable() {
     }
 
     override fun run() {
+        val defaultAllStart = ConfigUtil.getMainConfig().broadcast.defaultAllStart
+        val flag:Int = if (defaultAllStart) 0 else 1
+
         //获取所有在线的玩家
         Bukkit.getOnlinePlayers().forEach playerLoop@{player:Player ->
+            var isContainers:Boolean = ConfigUtil.getPlayerToggleConfig().broadcast[flag].contains(player.name)
+            if(!defaultAllStart) isContainers = !isContainers
+
             // 如果当前在线玩家在关闭列表中存在，则跳过
-            if (ConfigUtil.getPlayerToggleConfig().broadcast.contains(player.name)) return@playerLoop
+            if (isContainers) return@playerLoop
             //则将当前的List<String>逐行发送过去
             ConfigUtil.getMainConfig().broadcast.messages.get(index).forEach{line:String->
                 player.sendMessage(MessageUtil.text(line))
             }
         }
-
         //发送一条公告后 索引++
         index++
         //如果索引越界则重置索引

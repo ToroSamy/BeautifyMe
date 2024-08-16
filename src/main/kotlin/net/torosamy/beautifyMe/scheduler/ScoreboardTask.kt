@@ -10,8 +10,13 @@ import org.bukkit.scoreboard.DisplaySlot
 
 class ScoreboardTask : BukkitRunnable() {
     override fun run() {
+        val defaultAllStart = ConfigUtil.getMainConfig().scoreboard.defaultAllStart
+        val flag:Int = if (defaultAllStart) 0 else 1
+
         Bukkit.getOnlinePlayers().forEach{player: Player ->
-            if(ConfigUtil.getPlayerToggleConfig().scoreboard.contains(player.name)) return
+            var isContainers:Boolean = ConfigUtil.getPlayerToggleConfig().scoreboard[flag].contains(player.name)
+            if(!defaultAllStart) isContainers = !isContainers
+            if(isContainers) return
             setScoreboard(player)
         }
     }

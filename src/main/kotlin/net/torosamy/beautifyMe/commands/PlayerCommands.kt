@@ -1,15 +1,18 @@
 package net.torosamy.beautifyMe.commands
 
 import net.torosamy.beautifyMe.scheduler.ScoreboardTask
+import net.torosamy.beautifyMe.scheduler.TabListTask
 import net.torosamy.beautifyMe.utils.ConfigUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import org.incendo.cloud.annotations.Argument
 import org.incendo.cloud.annotations.Command
 import org.incendo.cloud.annotations.CommandDescription
 import org.incendo.cloud.annotations.Permission
 
 class PlayerCommands {
+
     @Command("bm toggle broadcast", requiredSender = Player::class)
     @Permission("beautifyme.toggle.broadcast.self")
     @CommandDescription("切换自己的broadcast的开关闭状态")
@@ -19,22 +22,22 @@ class PlayerCommands {
             return
         }
 
-        if (ConfigUtil.getPlayerToggleConfig().broadcast.contains(sender.name)) {
-            //从内存的关闭列表中删除
-            ConfigUtil.getPlayerToggleConfig().broadcast.remove(sender.name)
-            //发送开启成功的消息
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleOpen))
+        //根据配置文件判断是白名单还是黑名单
+        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().broadcast.defaultAllStart
+        val index:Int = if (isDefaultStart) 0 else 1
+        //判断是否包含
+        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().broadcast[index].contains(sender.name)
+        //内存操作
+        if (isContains) { ConfigUtil.getPlayerToggleConfig().broadcast[index].remove(sender.name) }
+        else { ConfigUtil.getPlayerToggleConfig().broadcast[index].add(sender.name) }
+        //具体开关闭逻辑
+        if(isDefaultStart) {
+            if(isContains) { sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleOpen)) }
+            else {sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleClose))}
         }else {
-            //添加到内存的关闭列表中
-            ConfigUtil.getPlayerToggleConfig().broadcast.add(sender.name)
-            //发送关闭成功的消息
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleClose))
+            if(isContains) { sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleClose)) }
+            else {sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleOpen))}
         }
-//        //使用指令不操作文件 提高性能
-//        //是否开启文件记录状态的功能
-//        if(!ConfigUtil.getMainConfig().broadcast.rememberToggleChoice) return
-//        //检测被设置状态的玩家 是否允许在文件夹中记录自己的状态
-//        if (!sender.hasPermission("beautifyme.toggle.broadcast.self")) return
     }
 
     @Command("bm toggle scoreboard", requiredSender = Player::class)
@@ -46,14 +49,68 @@ class PlayerCommands {
             return
         }
 
-        if (ConfigUtil.getPlayerToggleConfig().scoreboard.contains(sender.name)) {
-            ConfigUtil.getPlayerToggleConfig().scoreboard.remove(sender.name)
-            ScoreboardTask.setScoreboard(sender as Player)
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+        //根据配置文件判断是白名单还是黑名单
+        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().scoreboard.defaultAllStart
+        val index:Int = if (isDefaultStart) 0 else 1
+        //判断是否包含
+        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().scoreboard[index].contains(sender.name)
+        //内存操作
+        if (isContains) { ConfigUtil.getPlayerToggleConfig().scoreboard[index].remove(sender.name) }
+        else { ConfigUtil.getPlayerToggleConfig().scoreboard[index].add(sender.name) }
+        //具体开关闭逻辑
+        if(isDefaultStart) {
+            if(isContains) {
+                ScoreboardTask.setScoreboard(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+            } else {
+                ScoreboardTask.clearScoreboard(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+            }
         }else {
-            ConfigUtil.getPlayerToggleConfig().scoreboard.add(sender.name)
-            ScoreboardTask.clearScoreboard(sender as Player)
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+            if(isContains) {
+                ScoreboardTask.clearScoreboard(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+            } else {
+                ScoreboardTask.setScoreboard(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+            }
+        }
+    }
+
+    @Command("bm toggle tab", requiredSender = Player::class)
+    @Permission("beautifyme.toggle.tab.self")
+    @CommandDescription("切换自己的tab-list的开关闭状态")
+    fun playerToggleTabListSelf(sender: CommandSender) {
+        if(!ConfigUtil.getMainConfig().tabList.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListDisabled))
+            return
+        }
+
+        //根据配置文件判断是白名单还是黑名单
+        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().tabList.defaultAllStart
+        val index:Int = if (isDefaultStart) 0 else 1
+        //判断是否包含
+        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().tabList[index].contains(sender.name)
+        //内存操作
+        if (isContains) { ConfigUtil.getPlayerToggleConfig().tabList[index].remove(sender.name) }
+        else { ConfigUtil.getPlayerToggleConfig().tabList[index].add(sender.name) }
+        //具体开关闭逻辑
+        if(isDefaultStart) {
+            if(isContains) {
+                TabListTask.setTabList(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleOpen))
+            } else {
+                TabListTask.clearTabList(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleClose))
+            }
+        }else {
+            if(isContains) {
+                TabListTask.clearTabList(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleClose))
+            } else {
+                TabListTask.setTabList(sender as Player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleOpen))
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ public class MainConfig extends TorosamyConfig{
     public class Broadcast extends TorosamyConfig {
         public Boolean enabled;
         public Integer time;
-        public Boolean rememberToggleChoice;
+        public Boolean defaultAllStart;
         public List<List<String>> messages;
     }
 
@@ -19,7 +19,7 @@ public class MainConfig extends TorosamyConfig{
     public class ScoreBoard extends TorosamyConfig {
         public Boolean enabled;
         public Integer time;
-        public Boolean rememberToggleChoice;
+        public Boolean defaultAllStart;
 
         public Board board = new Board();
         public class Board extends TorosamyConfig {
@@ -32,7 +32,7 @@ public class MainConfig extends TorosamyConfig{
     public class TabList extends TorosamyConfig {
         public Boolean enabled;
         public Integer time;
-        public Boolean rememberToggleChoice;
+        public Boolean defaultAllStart;
         public List<String> header;
         public List<String> footer;
         public String nameList;
@@ -43,7 +43,7 @@ public class MainConfig extends TorosamyConfig{
     public class BossBar extends TorosamyConfig {
         public Boolean enabled;
         public Integer time;
-        public Boolean rememberToggleChoice;
+        public Boolean defaultAllStart;
 
         public Info info = new Info();
         public class Info extends TorosamyConfig {
