@@ -1,7 +1,0 @@
-name: BeautifyMe
-version: '1.0-SNAPSHOT'
-main: net.torosamy.beautifyMe.BeautifyMe
-api-version: '1.21'
-depend:
-  - TorosamyCore
-  - PlaceholderAPI
