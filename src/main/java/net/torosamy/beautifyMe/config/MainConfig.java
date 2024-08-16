@@ -8,6 +8,7 @@ import java.util.List;
 public class MainConfig extends TorosamyConfig{
     public Broadcast broadcast = new Broadcast();
     public class Broadcast extends TorosamyConfig {
+        public Boolean enabled;
         public Integer time;
         public Boolean rememberToggleChoice;
         public List<List<String>> messages;
@@ -16,6 +17,7 @@ public class MainConfig extends TorosamyConfig{
 
     public ScoreBoard scoreboard = new ScoreBoard();
     public class ScoreBoard extends TorosamyConfig {
+        public Boolean enabled;
         public Integer time;
         public Boolean rememberToggleChoice;
 
@@ -28,6 +30,7 @@ public class MainConfig extends TorosamyConfig{
 
     public TabList tabList = new TabList();
     public class TabList extends TorosamyConfig {
+        public Boolean enabled;
         public Integer time;
         public Boolean rememberToggleChoice;
         public List<String> header;
@@ -38,6 +41,7 @@ public class MainConfig extends TorosamyConfig{
 
     public BossBar bossbar = new BossBar();
     public class BossBar extends TorosamyConfig {
+        public Boolean enabled;
         public Integer time;
         public Boolean rememberToggleChoice;
 
@@ -51,6 +55,7 @@ public class MainConfig extends TorosamyConfig{
 
     public JoinBroadcast joinBroadcast = new JoinBroadcast();
     public class JoinBroadcast extends TorosamyConfig {
+        public Boolean enabled;
         public String title;
         public String subTitle;
     }

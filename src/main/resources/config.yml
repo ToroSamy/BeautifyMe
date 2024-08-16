@@ -1,9 +1,10 @@
 broadcast:
+  enabled: true
   # 单位：秒
   time: 300
   # false 启动服务器默认全部开启
   # true 根据player-toggle的记录选择是否启用
-  remember-toggle-choice: true
+  remember-toggle-choice: false
   messages:
     text1:
       - '&6&m                                                         '
@@ -16,9 +17,10 @@ broadcast:
 
 
 scoreboard:
+  enabled: true
   # 单位：秒
   time: 5
-  remember-toggle-choice: true
+  remember-toggle-choice: false
   board:
     title: '&6[ &e云间幽谷 &6]'
     lines:
@@ -31,8 +33,9 @@ scoreboard:
 
 
 tab-list:
+  enabled: true
   time: 5
-  remember-toggle-choice: true
+  remember-toggle-choice: false
   header:
     - '&f&m                                   '
     - '&6云间幽谷'
@@ -49,8 +52,9 @@ tab-list:
 
 
 bossbar:
+  enabled: true
   time: 5
-  remember-toggle-choice: true
+  remember-toggle-choice: false
   info:
     # SEGMENTED_10 将血条分为10个部分
     # SEGMENTED_12 将血条分为12个部分
@@ -63,5 +67,6 @@ bossbar:
 
 
 join-broadcast:
+  enabled: true
   title: '&6&l生存服'
   sub-title: '&e&l欢迎来到&6&l云间幽谷&e&l纯净服务器'

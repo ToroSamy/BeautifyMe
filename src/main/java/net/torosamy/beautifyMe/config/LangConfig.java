@@ -14,4 +14,6 @@ public class LangConfig extends TorosamyConfig {
     public String joinBroadcastToggleOpen;
     public String joinBroadcastToggleClose;
     public String reloadMessage;
+    public String broadcastDisabled;
+    public String scoreboardDisabled;
 }

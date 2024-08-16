@@ -1,5 +1,6 @@
 package net.torosamy.beautifyMe.commands
 
+import net.torosamy.beautifyMe.scheduler.ScoreboardTask
 import net.torosamy.beautifyMe.utils.ConfigUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.command.CommandSender
@@ -13,6 +14,11 @@ class PlayerCommands {
     @Permission("beautifyme.toggle.broadcast.self")
     @CommandDescription("切换自己的broadcast的开关闭状态")
     fun playerToggleBroadcastSelf(sender: CommandSender) {
+        if(!ConfigUtil.getMainConfig().broadcast.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastDisabled))
+            return
+        }
+
         if (ConfigUtil.getPlayerToggleConfig().broadcast.contains(sender.name)) {
             //从内存的关闭列表中删除
             ConfigUtil.getPlayerToggleConfig().broadcast.remove(sender.name)
@@ -29,5 +35,25 @@ class PlayerCommands {
 //        if(!ConfigUtil.getMainConfig().broadcast.rememberToggleChoice) return
 //        //检测被设置状态的玩家 是否允许在文件夹中记录自己的状态
 //        if (!sender.hasPermission("beautifyme.toggle.broadcast.self")) return
+    }
+
+    @Command("bm toggle scoreboard", requiredSender = Player::class)
+    @Permission("beautifyme.toggle.scoreboard.self")
+    @CommandDescription("切换自己的scoreboard的开关闭状态")
+    fun playerToggleScoreboardSelf(sender: CommandSender) {
+        if(!ConfigUtil.getMainConfig().scoreboard.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardDisabled))
+            return
+        }
+
+        if (ConfigUtil.getPlayerToggleConfig().scoreboard.contains(sender.name)) {
+            ConfigUtil.getPlayerToggleConfig().scoreboard.remove(sender.name)
+            ScoreboardTask.setScoreboard(sender as Player)
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+        }else {
+            ConfigUtil.getPlayerToggleConfig().scoreboard.add(sender.name)
+            ScoreboardTask.clearScoreboard(sender as Player)
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+        }
     }
 }

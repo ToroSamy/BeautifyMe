@@ -1,6 +1,8 @@
 package net.torosamy.beautifyMe.commands
 
+import net.torosamy.beautifyMe.scheduler.ScoreboardTask
 import net.torosamy.beautifyMe.utils.ConfigUtil
+import net.torosamy.beautifyMe.utils.SchedulerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
@@ -16,6 +18,7 @@ class AdminCommands {
     @CommandDescription("重载BeautifyMe配置文件")
     fun reloadConfig(sender: CommandSender) {
         ConfigUtil.reloadConfig()
+        SchedulerUtil.registerScheduler()
         sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().reloadMessage))
     }
 
@@ -23,6 +26,11 @@ class AdminCommands {
     @Permission("beautifyme.toggle.broadcast.other")
     @CommandDescription("切换其他玩家broadcast的开关闭状态")
     fun playerToggleBroadcastOther(sender: CommandSender, @Argument("player") player: Player) {
+        if(!ConfigUtil.getMainConfig().broadcast.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastDisabled))
+            return
+        }
+
         //如果内存中包含该玩家 则删除地址并开启玩家的broadcast
         if (ConfigUtil.getPlayerToggleConfig().broadcast.contains(player.name)) {
             //从内存的关闭列表中删除
@@ -42,5 +50,23 @@ class AdminCommands {
 //        if (!player.hasPermission("beautifyme.toggle.broadcast.self")) return
     }
 
+    @Command("bm toggle scoreboard <player>")
+    @Permission("beautifyme.toggle.scoreboard.other")
+    @CommandDescription("切换其他玩家scoreboard的开关闭状态")
+    fun playerToggleScoreboardOther(sender: CommandSender, @Argument("player") player: Player) {
+        if(!ConfigUtil.getMainConfig().scoreboard.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardDisabled))
+            return
+        }
 
+        if (ConfigUtil.getPlayerToggleConfig().scoreboard.contains(player.name)) {
+            ConfigUtil.getPlayerToggleConfig().scoreboard.remove(player.name)
+            ScoreboardTask.setScoreboard(player)
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+        }else {
+            ConfigUtil.getPlayerToggleConfig().scoreboard.add(player.name)
+            ScoreboardTask.setScoreboard(player)
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+        }
+    }
 }
