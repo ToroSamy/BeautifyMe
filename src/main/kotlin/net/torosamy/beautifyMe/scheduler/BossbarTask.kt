@@ -2,7 +2,6 @@ package net.torosamy.beautifyMe.scheduler
 
 import me.clip.placeholderapi.PlaceholderAPI
 import net.torosamy.beautifyMe.BeautifyMe
-import net.torosamy.beautifyMe.scheduler.ScoreboardTask.Companion.setScoreboard
 import net.torosamy.beautifyMe.utils.ConfigUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.Bukkit

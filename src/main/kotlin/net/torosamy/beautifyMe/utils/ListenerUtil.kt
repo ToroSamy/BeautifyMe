@@ -2,7 +2,6 @@ package net.torosamy.beautifyMe.utils
 
 import net.torosamy.beautifyMe.BeautifyMe
 import net.torosamy.beautifyMe.listener.JoinBroadcastListener
-import org.bukkit.Bukkit
 import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
 
@@ -15,7 +14,8 @@ class ListenerUtil {
         }
 
         fun registerJoinBroadcastListener() {
-            if (!ConfigUtil.getMainConfig().joinBroadcast.enabled) HandlerList.unregisterAll(joinBroadcastListener)
+            HandlerList.unregisterAll(joinBroadcastListener)
+            if (!ConfigUtil.getMainConfig().joinBroadcast.enabled) return
             else BeautifyMe.plugin.server.pluginManager.registerEvents(joinBroadcastListener,BeautifyMe.plugin)
         }
     }

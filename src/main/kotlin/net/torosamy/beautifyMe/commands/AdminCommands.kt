@@ -8,7 +8,6 @@ import net.torosamy.beautifyMe.utils.ListenerUtil
 import net.torosamy.beautifyMe.utils.SchedulerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.command.CommandSender
-import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 import org.incendo.cloud.annotations.Argument
 import org.incendo.cloud.annotations.Command
