@@ -1,6 +1,7 @@
 package net.torosamy.beautifyMe.utils
 
 import net.torosamy.beautifyMe.BeautifyMe
+import net.torosamy.beautifyMe.scheduler.BossbarTask
 import net.torosamy.beautifyMe.scheduler.BroadcastTask
 import net.torosamy.beautifyMe.scheduler.ScoreboardTask
 import net.torosamy.beautifyMe.scheduler.TabListTask
@@ -15,11 +16,26 @@ class SchedulerUtil {
         private lateinit var broadcastTask: BukkitTask
         private lateinit var scoreboardTask: BukkitTask
         private lateinit var tabListTask: BukkitTask
+        private lateinit var bossbarTask: BukkitTask
         fun registerScheduler() {
             registerBroadcast()
             registerScoreboard()
             registerTabList()
+            registerBossbar()
         }
+
+        fun registerBossbar() {
+            if (::bossbarTask.isInitialized && !bossbarTask.isCancelled) {
+                bossbarTask.cancel()
+                Bukkit.getBossBar(BossbarTask.namespacedKey)?.removeAll()
+            }
+            if (!ConfigUtil.getMainConfig().bossbar.enabled) return
+            bossbarTask = BossbarTask().runTaskTimer(
+                BeautifyMe.plugin, 0L,
+                ConfigUtil.getMainConfig().bossbar.time * 20L
+            )
+        }
+
 
         fun registerTabList() {
             if (::tabListTask.isInitialized && !tabListTask.isCancelled) {

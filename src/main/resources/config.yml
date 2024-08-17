@@ -60,7 +60,7 @@ bossbar:
     # SEGMENTED_6  将血条分为6个部分
     # SOLID        将血条设置为一个部分
     style: SOLID
-    color: WHITE # 仅限 1.9+ 服务器: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+    color: YELLOW # 仅限 1.9+ 服务器: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
     text: '&e快加群:&6882535365 &e参加公会比赛吧! ✧*｡٩(ˊᗜˋ*)و✧*｡'
 
 

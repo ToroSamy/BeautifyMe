@@ -1,8 +1,10 @@
 package net.torosamy.beautifyMe.commands
 
+import net.torosamy.beautifyMe.scheduler.BossbarTask
 import net.torosamy.beautifyMe.scheduler.ScoreboardTask
 import net.torosamy.beautifyMe.scheduler.TabListTask
 import net.torosamy.beautifyMe.utils.ConfigUtil
+import net.torosamy.beautifyMe.utils.ListenerUtil
 import net.torosamy.beautifyMe.utils.SchedulerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.command.CommandSender
@@ -20,6 +22,7 @@ class AdminCommands {
     fun reloadConfig(sender: CommandSender) {
         ConfigUtil.reloadConfig()
         SchedulerUtil.registerScheduler()
+        ListenerUtil.registerListener()
         sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().reloadMessage))
     }
 
@@ -120,6 +123,45 @@ class AdminCommands {
             } else {
                 TabListTask.setTabList(player)
                 sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleOpen))
+            }
+        }
+    }
+
+
+
+    @Command("bm toggle bossbar <player>")
+    @Permission("beautifyme.toggle.bossbar.other")
+    @CommandDescription("切换其他玩家bossbar的开关闭状态")
+    fun playerToggleBossbarOther(sender: CommandSender, @Argument("player") player: Player) {
+        if(!ConfigUtil.getMainConfig().bossbar.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarDisabled))
+            return
+        }
+
+        //根据配置文件判断是白名单还是黑名单
+        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().bossbar.defaultAllStart
+        val index:Int = if (isDefaultStart) 0 else 1
+        //判断是否包含
+        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().bossbar[index].contains(player.name)
+        //内存操作
+        if (isContains) { ConfigUtil.getPlayerToggleConfig().bossbar[index].remove(player.name) }
+        else { ConfigUtil.getPlayerToggleConfig().bossbar[index].add(player.name) }
+        //具体开关闭逻辑
+        if(isDefaultStart) {
+            if(isContains) {
+                BossbarTask.setBossbar(player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleOpen))
+            } else {
+                BossbarTask.clearBossbar(player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleClose))
+            }
+        }else {
+            if(isContains) {
+                BossbarTask.clearBossbar(player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleClose))
+            } else {
+                BossbarTask.setBossbar(player)
+                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleOpen))
             }
         }
     }

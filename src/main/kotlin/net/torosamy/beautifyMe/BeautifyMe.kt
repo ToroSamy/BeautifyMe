@@ -2,6 +2,7 @@ package net.torosamy.beautifyMe
 
 import net.torosamy.beautifyMe.utils.CommandUtil
 import net.torosamy.beautifyMe.utils.ConfigUtil
+import net.torosamy.beautifyMe.utils.ListenerUtil
 import net.torosamy.beautifyMe.utils.SchedulerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.Bukkit
@@ -16,6 +17,7 @@ class BeautifyMe : JavaPlugin() {
 
         CommandUtil.registerCommand()
         SchedulerUtil.registerScheduler()
+        ListenerUtil.registerListener()
 
         Bukkit.getConsoleSender().sendMessage(MessageUtil.text("&a[服务器娘]&a插件 &eBeautifyMe &a成功开启喵~"))
         Bukkit.getConsoleSender().sendMessage(MessageUtil.text("&a[服务器娘]&a作者 &eTorosamy|yweiyang"))
