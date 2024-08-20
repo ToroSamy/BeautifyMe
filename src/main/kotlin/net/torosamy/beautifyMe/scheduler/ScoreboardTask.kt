@@ -23,11 +23,13 @@ class ScoreboardTask : BukkitRunnable() {
     companion object{
         //根据一名玩家的信息生成对应的计分板
         fun setScoreboard(player: Player) {
-            var scoreboard = Bukkit.getScoreboardManager().newScoreboard
+            //译注:CraftBukkit 使用弱引用技术管理计分板对象, 若插件或玩家均不再使用此计分板 (可以理解为完成使命了),
+            //服务器会在 GC 时清理掉, 不需要开发者手动置空.
+            val scoreboard = Bukkit.getScoreboardManager().newScoreboard
             var objective = scoreboard.getObjective("side")
             if(objective == null) objective = scoreboard.registerNewObjective("side","dummy")
             objective.displaySlot = DisplaySlot.SIDEBAR
-            var title: String = ConfigUtil.getMainConfig().scoreboard.board.title
+            val title: String = ConfigUtil.getMainConfig().scoreboard.board.title
 
             if(title.length >= 16) {
                 Bukkit.getConsoleSender().sendMessage(MessageUtil.text("&b[服务器娘]&c错误 计分板的标题超过16个字符"))
@@ -45,7 +47,7 @@ class ScoreboardTask : BukkitRunnable() {
         }
         //清除一名玩家的计分板
         fun clearScoreboard(player: Player){
-            var scoreboard = Bukkit.getScoreboardManager().newScoreboard
+            val scoreboard = Bukkit.getScoreboardManager().newScoreboard
             scoreboard.clearSlot(DisplaySlot.SIDEBAR)
             player.scoreboard = scoreboard
         }
