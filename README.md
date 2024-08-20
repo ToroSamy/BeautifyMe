@@ -9,7 +9,7 @@
 - - **Usage:** /bm reload
   - **Description:** reload this plugin
   - **Permission:** beautifyme.reload
-<br>
+  <br>
 - - **Usage:** /bm toggle broadcast player-name
   - **Description:** Switch other player`s broadcast status
   - **Permission:** beautifyme.toggle.broadcast.other
