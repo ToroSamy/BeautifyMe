@@ -1,6 +1,10 @@
 ## Dependency
 - TorosamyCore
 - PlaceholderAPI
+## Function
+- Custom and switchable broadcast scoreboard tab broadcast
+- black and white list
+- Quick command to send title
 ## Usage
 1. download [TorosamyCore](https://github.com/ToroSamy/TorosamyCore) and [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) as a dependency plugin
 2. put the **dependencies** and this plugin into your plugins folder and start your server
@@ -41,6 +45,14 @@
 - - **Usage:** /bm toggle bossbar
   - **Description:** Switch the player's own bossbar state
   - **Permission:** beautifyme.toggle.bossbar.other
+  <br>
+- - **Usage:** /bm title main sub
+  - **Description:** Send title to all online players
+  - **Permission:** beautifyme.title.all
+  <br>
+- - **Usage:** /bm title main sub player
+  - **Description:** Send title to a single players
+  - **Permission:** beautifyme.title.single
 ## Config
 
 ### config.yml
@@ -132,6 +144,7 @@ bossbar-toggle-open: "&b[服务器娘]&a成功 &e开启 &abossbar喵~"
 bossbar-toggle-close: "&b[服务器娘]&a成功 &e关闭 &abossbar喵~"
 bossbar-disabled: "&b[服务器娘]&a服务器没有启用 &ebossbar &a喵~"
 reload-message: "&b[服务器娘]&a插件 &eBeautifyMe &a重载成功喵~"
+send-success: "&b[服务器娘]&a发送成功!"
 ```
 
 ## Contact Author
@@ -141,4 +154,4 @@ reload-message: "&b[服务器娘]&a插件 &eBeautifyMe &a重载成功喵~"
 
 ## License
 
-[MIT](./LICENSE)
+[GPL-3.0 license](./LICENSE)
