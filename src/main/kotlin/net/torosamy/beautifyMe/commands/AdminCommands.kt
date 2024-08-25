@@ -1,5 +1,6 @@
 package net.torosamy.beautifyMe.commands
-
+import net.torosamy.beautifyMe.BeautifyMe
+import me.clip.placeholderapi.PlaceholderAPI
 import net.torosamy.beautifyMe.scheduler.BossbarTask
 import net.torosamy.beautifyMe.scheduler.ScoreboardTask
 import net.torosamy.beautifyMe.scheduler.TabListTask
@@ -7,6 +8,7 @@ import net.torosamy.beautifyMe.utils.ConfigUtil
 import net.torosamy.beautifyMe.utils.ListenerUtil
 import net.torosamy.beautifyMe.utils.SchedulerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
+import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.incendo.cloud.annotations.Argument
@@ -163,5 +165,30 @@ class AdminCommands {
                 sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleOpen))
             }
         }
+    }
+
+
+    @Command(value = "bm title <main> <sub>")
+    @Permission("beautifyme.title.all")
+    @CommandDescription("向全服玩家发送big-title")
+    fun sendTitleToAll(sender: CommandSender, @Argument("main") mainTitle: String, @Argument("sub") subTitle: String) {
+        Bukkit.getOnlinePlayers().forEach{ player: Player ->
+            player.sendTitle(
+                MessageUtil.text(PlaceholderAPI.setPlaceholders(player, mainTitle)),
+                MessageUtil.text(PlaceholderAPI.setPlaceholders(player, subTitle))
+            )
+        }
+        BeautifyMe.plugin.server.consoleSender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().sendSuccess))
+    }
+
+    @Command(value = "bm title <main> <sub> <player>")
+    @Permission("beautifyme.title.single")
+    @CommandDescription("向玩家单独发送big-title")
+    fun sendTitleToSingle(sender: CommandSender, @Argument("main") mainTitle: String, @Argument("sub") subTitle: String,@Argument("player") player: Player) {
+        player.sendTitle(
+            MessageUtil.text(PlaceholderAPI.setPlaceholders(player, mainTitle)),
+            MessageUtil.text(PlaceholderAPI.setPlaceholders(player, subTitle))
+        )
+        BeautifyMe.plugin.server.consoleSender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().sendSuccess))
     }
 }

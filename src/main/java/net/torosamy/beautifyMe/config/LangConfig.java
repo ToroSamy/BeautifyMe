@@ -20,4 +20,5 @@ public class LangConfig extends TorosamyConfig {
     public String bossbarDisabled;
 
     public String reloadMessage;
+    public String sendSuccess;
 }
