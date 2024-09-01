@@ -29,10 +29,10 @@ class SchedulerUtil {
                 bossbarTask.cancel()
                 Bukkit.getBossBar(BossbarTask.namespacedKey)?.removeAll()
             }
-            if (!ConfigUtil.getMainConfig().bossbar.enabled) return
+            if (!ConfigUtil.mainConfig.bossbar.enabled) return
             bossbarTask = BossbarTask().runTaskTimer(
                 BeautifyMe.plugin, 0L,
-                ConfigUtil.getMainConfig().bossbar.time * 20L
+                ConfigUtil.mainConfig.bossbar.time * 20L
             )
         }
 
@@ -42,10 +42,10 @@ class SchedulerUtil {
                 tabListTask.cancel()
                 Bukkit.getOnlinePlayers().forEach(TabListTask::clearTabList)
             }
-            if (!ConfigUtil.getMainConfig().tabList.enabled) return
+            if (!ConfigUtil.mainConfig.tabList.enabled) return
             tabListTask = TabListTask().runTaskTimer(
                 BeautifyMe.plugin, 0L,
-                ConfigUtil.getMainConfig().tabList.time * 20L
+                ConfigUtil.mainConfig.tabList.time * 20L
             )
         }
 
@@ -54,10 +54,10 @@ class SchedulerUtil {
                 scoreboardTask.cancel()
                 Bukkit.getOnlinePlayers().forEach(ScoreboardTask::clearScoreboard)
             }
-            if (!ConfigUtil.getMainConfig().scoreboard.enabled) return
+            if (!ConfigUtil.mainConfig.scoreboard.enabled) return
             scoreboardTask = ScoreboardTask().runTaskTimer(
                 BeautifyMe.plugin, 0L,
-                ConfigUtil.getMainConfig().scoreboard.time * 20L
+                ConfigUtil.mainConfig.scoreboard.time * 20L
             )
         }
 
@@ -67,10 +67,10 @@ class SchedulerUtil {
             //先检测是否为null 再检测是否已经取消
             if (::broadcastTask.isInitialized && !broadcastTask.isCancelled) broadcastTask.cancel()
             //如果该功能不开启
-            if (!ConfigUtil.getMainConfig().broadcast.enabled) return
+            if (!ConfigUtil.mainConfig.broadcast.enabled) return
             broadcastTask = BroadcastTask().runTaskTimerAsynchronously(
                 BeautifyMe.plugin, 0L,
-                ConfigUtil.getMainConfig().broadcast.time * 20L
+                ConfigUtil.mainConfig.broadcast.time * 20L
             )
         }
     }

@@ -18,26 +18,26 @@ class PlayerCommands {
     @Permission("beautifyme.toggle.broadcast.self")
     @CommandDescription("切换自己的broadcast的开关闭状态")
     fun playerToggleBroadcastSelf(sender: CommandSender) {
-        if(!ConfigUtil.getMainConfig().broadcast.enabled) {
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastDisabled))
+        if(!ConfigUtil.mainConfig.broadcast.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.broadcastDisabled))
             return
         }
 
         //根据配置文件判断是白名单还是黑名单
-        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().broadcast.defaultAllStart
+        val isDefaultStart : Boolean =ConfigUtil.mainConfig.broadcast.defaultAllStart
         val index:Int = if (isDefaultStart) 0 else 1
         //判断是否包含
-        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().broadcast[index].contains(sender.name)
+        val isContains : Boolean = ConfigUtil.playerToggleConfig.broadcast[index].contains(sender.name)
         //内存操作
-        if (isContains) { ConfigUtil.getPlayerToggleConfig().broadcast[index].remove(sender.name) }
-        else { ConfigUtil.getPlayerToggleConfig().broadcast[index].add(sender.name) }
+        if (isContains) { ConfigUtil.playerToggleConfig.broadcast[index].remove(sender.name) }
+        else { ConfigUtil.playerToggleConfig.broadcast[index].add(sender.name) }
         //具体开关闭逻辑
         if(isDefaultStart) {
-            if(isContains) { sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleOpen)) }
-            else {sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleClose))}
+            if(isContains) { sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.broadcastToggleOpen)) }
+            else {sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.broadcastToggleClose))}
         }else {
-            if(isContains) { sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleClose)) }
-            else {sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().broadcastToggleOpen))}
+            if(isContains) { sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.broadcastToggleClose)) }
+            else {sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.broadcastToggleOpen))}
         }
     }
 
@@ -45,35 +45,35 @@ class PlayerCommands {
     @Permission("beautifyme.toggle.scoreboard.self")
     @CommandDescription("切换自己的scoreboard的开关闭状态")
     fun playerToggleScoreboardSelf(sender: CommandSender) {
-        if(!ConfigUtil.getMainConfig().scoreboard.enabled) {
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardDisabled))
+        if(!ConfigUtil.mainConfig.scoreboard.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.scoreboardDisabled))
             return
         }
 
         //根据配置文件判断是白名单还是黑名单
-        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().scoreboard.defaultAllStart
+        val isDefaultStart : Boolean =ConfigUtil.mainConfig.scoreboard.defaultAllStart
         val index:Int = if (isDefaultStart) 0 else 1
         //判断是否包含
-        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().scoreboard[index].contains(sender.name)
+        val isContains : Boolean = ConfigUtil.playerToggleConfig.scoreboard[index].contains(sender.name)
         //内存操作
-        if (isContains) { ConfigUtil.getPlayerToggleConfig().scoreboard[index].remove(sender.name) }
-        else { ConfigUtil.getPlayerToggleConfig().scoreboard[index].add(sender.name) }
+        if (isContains) { ConfigUtil.playerToggleConfig.scoreboard[index].remove(sender.name) }
+        else { ConfigUtil.playerToggleConfig.scoreboard[index].add(sender.name) }
         //具体开关闭逻辑
         if(isDefaultStart) {
             if(isContains) {
                 ScoreboardTask.setScoreboard(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.scoreboardToggleOpen))
             } else {
                 ScoreboardTask.clearScoreboard(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.scoreboardToggleClose))
             }
         }else {
             if(isContains) {
                 ScoreboardTask.clearScoreboard(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleClose))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.scoreboardToggleClose))
             } else {
                 ScoreboardTask.setScoreboard(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().scoreboardToggleOpen))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.scoreboardToggleOpen))
             }
         }
     }
@@ -82,35 +82,35 @@ class PlayerCommands {
     @Permission("beautifyme.toggle.tab.self")
     @CommandDescription("切换自己的tab-list的开关闭状态")
     fun playerToggleTabListSelf(sender: CommandSender) {
-        if(!ConfigUtil.getMainConfig().tabList.enabled) {
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListDisabled))
+        if(!ConfigUtil.mainConfig.tabList.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.tabListDisabled))
             return
         }
 
         //根据配置文件判断是白名单还是黑名单
-        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().tabList.defaultAllStart
+        val isDefaultStart : Boolean =ConfigUtil.mainConfig.tabList.defaultAllStart
         val index:Int = if (isDefaultStart) 0 else 1
         //判断是否包含
-        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().tabList[index].contains(sender.name)
+        val isContains : Boolean = ConfigUtil.playerToggleConfig.tabList[index].contains(sender.name)
         //内存操作
-        if (isContains) { ConfigUtil.getPlayerToggleConfig().tabList[index].remove(sender.name) }
-        else { ConfigUtil.getPlayerToggleConfig().tabList[index].add(sender.name) }
+        if (isContains) { ConfigUtil.playerToggleConfig.tabList[index].remove(sender.name) }
+        else { ConfigUtil.playerToggleConfig.tabList[index].add(sender.name) }
         //具体开关闭逻辑
         if(isDefaultStart) {
             if(isContains) {
                 TabListTask.setTabList(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleOpen))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.tabListToggleOpen))
             } else {
                 TabListTask.clearTabList(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleClose))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.tabListToggleClose))
             }
         }else {
             if(isContains) {
                 TabListTask.clearTabList(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleClose))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.tabListToggleClose))
             } else {
                 TabListTask.setTabList(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().tabListToggleOpen))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.tabListToggleOpen))
             }
         }
     }
@@ -120,35 +120,35 @@ class PlayerCommands {
     @Permission("beautifyme.toggle.bossbar.self")
     @CommandDescription("切换自己的bossbar的开关闭状态")
     fun playerToggleBossbarOther(sender: CommandSender) {
-        if(!ConfigUtil.getMainConfig().bossbar.enabled) {
-            sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarDisabled))
+        if(!ConfigUtil.mainConfig.bossbar.enabled) {
+            sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.bossbarDisabled))
             return
         }
 
         //根据配置文件判断是白名单还是黑名单
-        val isDefaultStart : Boolean =ConfigUtil.getMainConfig().bossbar.defaultAllStart
+        val isDefaultStart : Boolean =ConfigUtil.mainConfig.bossbar.defaultAllStart
         val index:Int = if (isDefaultStart) 0 else 1
         //判断是否包含
-        val isContains : Boolean = ConfigUtil.getPlayerToggleConfig().bossbar[index].contains(sender.name)
+        val isContains : Boolean = ConfigUtil.playerToggleConfig.bossbar[index].contains(sender.name)
         //内存操作
-        if (isContains) { ConfigUtil.getPlayerToggleConfig().bossbar[index].remove(sender.name) }
-        else { ConfigUtil.getPlayerToggleConfig().bossbar[index].add(sender.name) }
+        if (isContains) { ConfigUtil.playerToggleConfig.bossbar[index].remove(sender.name) }
+        else { ConfigUtil.playerToggleConfig.bossbar[index].add(sender.name) }
         //具体开关闭逻辑
         if(isDefaultStart) {
             if(isContains) {
                 BossbarTask.setBossbar(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleOpen))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.bossbarToggleOpen))
             } else {
                 BossbarTask.clearBossbar(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleClose))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.bossbarToggleClose))
             }
         }else {
             if(isContains) {
                 BossbarTask.clearBossbar(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleClose))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.bossbarToggleClose))
             } else {
                 BossbarTask.setBossbar(sender as Player)
-                sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().bossbarToggleOpen))
+                sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.bossbarToggleOpen))
             }
         }
     }

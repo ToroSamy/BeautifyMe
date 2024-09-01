@@ -13,10 +13,10 @@ import org.bukkit.scheduler.BukkitRunnable
 
 class BossbarTask() : BukkitRunnable() {
     override fun run() {
-        val defaultAllStart = ConfigUtil.getMainConfig().bossbar.defaultAllStart
+        val defaultAllStart = ConfigUtil.mainConfig.bossbar.defaultAllStart
         val flag: Int = if (defaultAllStart) 0 else 1
         Bukkit.getOnlinePlayers().forEach { player: Player ->
-            var isContainers: Boolean = ConfigUtil.getPlayerToggleConfig().bossbar[flag].contains(player.name)
+            var isContainers: Boolean = ConfigUtil.playerToggleConfig.bossbar[flag].contains(player.name)
             if (!defaultAllStart) isContainers = !isContainers
             if (isContainers) return
             setBossbar(player)
@@ -26,8 +26,8 @@ class BossbarTask() : BukkitRunnable() {
     init {
         Bukkit.createBossBar(
             namespacedKey, "temp-title",
-            BarColor.valueOf(ConfigUtil.getMainConfig().bossbar.info.color),
-            BarStyle.valueOf(ConfigUtil.getMainConfig().bossbar.info.style)
+            BarColor.valueOf(ConfigUtil.mainConfig.bossbar.info.color),
+            BarStyle.valueOf(ConfigUtil.mainConfig.bossbar.info.style)
         )
     }
 
@@ -35,9 +35,9 @@ class BossbarTask() : BukkitRunnable() {
         val namespacedKey: NamespacedKey = NamespacedKey(BeautifyMe.plugin, "bossbar")
         fun setBossbar(player: Player) {
             //更新Bossbar
-            Bukkit.getBossBar(namespacedKey)?.setTitle(MessageUtil.text(PlaceholderAPI.setPlaceholders(player, ConfigUtil.getMainConfig().bossbar.info.text)))
-            Bukkit.getBossBar(namespacedKey)?.style = BarStyle.valueOf(ConfigUtil.getMainConfig().bossbar.info.style)
-            Bukkit.getBossBar(namespacedKey)?.color = BarColor.valueOf(ConfigUtil.getMainConfig().bossbar.info.color)
+            Bukkit.getBossBar(namespacedKey)?.setTitle(MessageUtil.text(PlaceholderAPI.setPlaceholders(player, ConfigUtil.mainConfig.bossbar.info.text)))
+            Bukkit.getBossBar(namespacedKey)?.style = BarStyle.valueOf(ConfigUtil.mainConfig.bossbar.info.style)
+            Bukkit.getBossBar(namespacedKey)?.color = BarColor.valueOf(ConfigUtil.mainConfig.bossbar.info.color)
 
             Bukkit.getBossBar(namespacedKey)?.addPlayer(player)
         }

@@ -10,19 +10,19 @@ import org.bukkit.event.player.PlayerJoinEvent
 class JoinBroadcastListener : Listener {
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
-        if (!ConfigUtil.getMainConfig().joinBroadcast.enabled) return
+        if (!ConfigUtil.mainConfig.joinBroadcast.enabled) return
 
         event.player.sendTitle(
             MessageUtil.text(
                 PlaceholderAPI.setPlaceholders(
                     event.player,
-                    ConfigUtil.getMainConfig().joinBroadcast.title
+                    ConfigUtil.mainConfig.joinBroadcast.title
                 )
             ),
             MessageUtil.text(
                 PlaceholderAPI.setPlaceholders(
                     event.player,
-                    ConfigUtil.getMainConfig().joinBroadcast.subTitle
+                    ConfigUtil.mainConfig.joinBroadcast.subTitle
                 )
             )
         )

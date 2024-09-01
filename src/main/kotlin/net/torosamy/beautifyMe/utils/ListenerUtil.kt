@@ -13,9 +13,9 @@ class ListenerUtil {
             registerJoinBroadcastListener()
         }
 
-        fun registerJoinBroadcastListener() {
+        private fun registerJoinBroadcastListener() {
             HandlerList.unregisterAll(joinBroadcastListener)
-            if (!ConfigUtil.getMainConfig().joinBroadcast.enabled) return
+            if (!ConfigUtil.mainConfig.joinBroadcast.enabled) return
             else BeautifyMe.plugin.server.pluginManager.registerEvents(joinBroadcastListener,BeautifyMe.plugin)
         }
     }

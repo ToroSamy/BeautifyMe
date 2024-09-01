@@ -13,8 +13,8 @@ class BeautifyMe : JavaPlugin() {
 
     override fun onEnable() {
         plugin = this
-        ConfigUtil.reloadConfig()
 
+        ConfigUtil.reloadConfig()
         CommandUtil.registerCommand()
         SchedulerUtil.registerScheduler()
         ListenerUtil.registerListener()

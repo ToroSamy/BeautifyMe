@@ -10,11 +10,11 @@ import org.bukkit.scoreboard.DisplaySlot
 
 class ScoreboardTask : BukkitRunnable() {
     override fun run() {
-        val defaultAllStart = ConfigUtil.getMainConfig().scoreboard.defaultAllStart
+        val defaultAllStart = ConfigUtil.mainConfig.scoreboard.defaultAllStart
         val flag:Int = if (defaultAllStart) 0 else 1
 
         Bukkit.getOnlinePlayers().forEach{player: Player ->
-            var isContainers:Boolean = ConfigUtil.getPlayerToggleConfig().scoreboard[flag].contains(player.name)
+            var isContainers:Boolean = ConfigUtil.playerToggleConfig.scoreboard[flag].contains(player.name)
             if(!defaultAllStart) isContainers = !isContainers
             if(isContainers) return
             setScoreboard(player)
@@ -29,7 +29,7 @@ class ScoreboardTask : BukkitRunnable() {
             var objective = scoreboard.getObjective("side")
             if(objective == null) objective = scoreboard.registerNewObjective("side","dummy")
             objective.displaySlot = DisplaySlot.SIDEBAR
-            val title: String = ConfigUtil.getMainConfig().scoreboard.board.title
+            val title: String = ConfigUtil.mainConfig.scoreboard.board.title
 
             if(title.length >= 16) {
                 Bukkit.getConsoleSender().sendMessage(MessageUtil.text("&b[服务器娘]&c错误 计分板的标题超过16个字符"))
@@ -38,8 +38,8 @@ class ScoreboardTask : BukkitRunnable() {
             }
             objective.displayName = MessageUtil.text(PlaceholderAPI.setPlaceholders(player, title))
 
-            var rank = ConfigUtil.getMainConfig().scoreboard.board.lines.size
-            for (line:String in ConfigUtil.getMainConfig().scoreboard.board.lines) {
+            var rank = ConfigUtil.mainConfig.scoreboard.board.lines.size
+            for (line:String in ConfigUtil.mainConfig.scoreboard.board.lines) {
                 objective.getScore(MessageUtil.text(PlaceholderAPI.setPlaceholders(player,line))).score = rank
                 rank--
             }
