@@ -20,7 +20,7 @@ scoreboard:
   time: 5
   default-all-start: true
   board:
-    title: '&6[ &e比特躺平 &6]'
+    title: '&6[ &eBitLie &6]'
     lines:
       - '&6&m                         '
       - '&6 ▪ &6&l名称&f:&e%player_name%'
@@ -36,7 +36,7 @@ tab-list:
   default-all-start: true
   header:
     - '&f&m                                   '
-    - '&6比特躺平'
+    - '&6BitLie'
     - '&e欢迎玩家:&f%player_name%'
     - '&6生存在线 &f%server_online% &6全服在线: &f%bungee_total%'
     - '&f&m                                   '
@@ -67,4 +67,4 @@ bossbar:
 join-broadcast:
   enabled: true
   title: '&6&l生存服'
-  sub-title: '&e&l欢迎来到&6&l比特躺平&e&l纯净服务器'
+  sub-title: '&e&l欢迎来到&6&lBitLie&e&l纯净服务器'
