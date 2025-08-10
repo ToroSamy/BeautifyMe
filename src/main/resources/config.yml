@@ -6,7 +6,7 @@ broadcast:
   messages:
     text1:
       - '&6&m                                                         '
-      - '&b[服务器娘]&a群号:882535365 官网:server.torosamy.net'
+      - '&b[服务器娘]&a群号:882535365 官网:www.bitlie.net'
       - '&6&m                                                         '
     text2:
       - '&6&m                                                         '
@@ -20,13 +20,13 @@ scoreboard:
   time: 5
   default-all-start: true
   board:
-    title: '&6[ &e云间幽谷 &6]'
+    title: '&6[ &e比特躺平 &6]'
     lines:
       - '&6&m                         '
       - '&6 ▪ &6&l名称&f:&e%player_name%'
       - '&6 ▪ &6&l等级&f:&e%player_level%'
       - '&6&m                         '
-      - '&6 ▪ &6官网&f:&eserver.torosamy.net'
+      - '&6 ▪ &6官网&f:&ewww.bitlie.net'
       - '&6 ▪ &6群号&f:&e882535365'
 
 
@@ -36,14 +36,14 @@ tab-list:
   default-all-start: true
   header:
     - '&f&m                                   '
-    - '&6云间幽谷'
+    - '&6比特躺平'
     - '&e欢迎玩家:&f%player_name%'
     - '&6生存在线 &f%server_online% &6全服在线: &f%bungee_total%'
     - '&f&m                                   '
   footer:
     - '&f&m                                   '
     - '&6服主QQ:&f1364596766'
-    - '&e官网:&fserver.torosamy.net'
+    - '&e官网:&fwww.bitlie.net'
     - '&6群号:&f882535365'
     - '&f&m                                   '
   name-list: '&6[&e%vault_prefix%&6]&f%player_name%'
@@ -67,4 +67,4 @@ bossbar:
 join-broadcast:
   enabled: true
   title: '&6&l生存服'
-  sub-title: '&e&l欢迎来到&6&l云间幽谷&e&l纯净服务器'
+  sub-title: '&e&l欢迎来到&6&l比特躺平&e&l纯净服务器'
