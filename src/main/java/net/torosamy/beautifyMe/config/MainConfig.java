@@ -1,13 +1,13 @@
 package net.torosamy.beautifyMe.config;
 
 
-import net.torosamy.torosamyCore.config.TorosamyConfig;
+import net.torosamy.torosamyCore.config.IConfigManage;
 import java.util.List;
 
 
-public class MainConfig extends TorosamyConfig{
+public class MainConfig implements IConfigManage{
     public Broadcast broadcast = new Broadcast();
-    public class Broadcast extends TorosamyConfig {
+    public class Broadcast implements IConfigManage {
         public Boolean enabled;
         public Integer time;
         public Boolean defaultAllStart;
@@ -16,20 +16,20 @@ public class MainConfig extends TorosamyConfig{
 
 
     public ScoreBoard scoreboard = new ScoreBoard();
-    public class ScoreBoard extends TorosamyConfig {
+    public class ScoreBoard implements IConfigManage {
         public Boolean enabled;
         public Integer time;
         public Boolean defaultAllStart;
 
         public Board board = new Board();
-        public class Board extends TorosamyConfig {
+        public class Board implements IConfigManage {
             public String title;
             public List<String> lines;
         }
     }
 
     public TabList tabList = new TabList();
-    public class TabList extends TorosamyConfig {
+    public class TabList implements IConfigManage {
         public Boolean enabled;
         public Integer time;
         public Boolean defaultAllStart;
@@ -40,13 +40,13 @@ public class MainConfig extends TorosamyConfig{
 
 
     public BossBar bossbar = new BossBar();
-    public class BossBar extends TorosamyConfig {
+    public class BossBar implements IConfigManage {
         public Boolean enabled;
         public Integer time;
         public Boolean defaultAllStart;
 
         public Info info = new Info();
-        public class Info extends TorosamyConfig {
+        public class Info implements IConfigManage {
             public String style;
             public String color;
             public String text;
@@ -54,9 +54,36 @@ public class MainConfig extends TorosamyConfig{
     }
 
     public JoinBroadcast joinBroadcast = new JoinBroadcast();
-    public class JoinBroadcast extends TorosamyConfig {
+    public class JoinBroadcast implements IConfigManage {
         public Boolean enabled;
         public String title;
         public String subTitle;
     }
+
+    public JoinMessage joinMessage = new JoinMessage();
+    public class JoinMessage implements IConfigManage {
+        public Boolean enabled;
+        public String message;
+    }
+
+    public QuitMessage quitMessage = new QuitMessage();
+    public class QuitMessage implements IConfigManage {
+        public Boolean enabled;
+        public String message;
+    }
+
+    public FirstJoinMessage firstJoinMessage = new FirstJoinMessage();
+    public class FirstJoinMessage implements IConfigManage {
+        public Boolean enabled;
+        public String message;
+    }
+    
+    public JoinMotd joinMotd = new JoinMotd();
+    public class JoinMotd implements IConfigManage {
+        public Boolean enabled;
+        public List<String> messages;
+    }
+    
+    public String titleBigPrefix;
+    public String titleSmallPrefix;
 }

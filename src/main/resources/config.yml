@@ -4,19 +4,16 @@ broadcast:
   time: 300
   default-all-start: true
   messages:
-    text1:
+    - - '&6&m                                                         '
+      - '&b[服务器娘]&a群号:1057650878 官网:www.bitlie.net'
       - '&6&m                                                         '
-      - '&b[服务器娘]&a群号:882535365 官网:www.bitlie.net'
-      - '&6&m                                                         '
-    text2:
-      - '&6&m                                                         '
+    - - '&6&m                                                         '
       - '&b[服务器娘]&a玩服千万条 和谐第一条 言行不规范 封禁直到老'
       - '&6&m                                                         '
 
 
 scoreboard:
-  enabled: true
-  # 单位：秒
+  enabled: true  # 单位：秒
   time: 5
   default-all-start: true
   board:
@@ -27,7 +24,7 @@ scoreboard:
       - '&6 ▪ &6&l等级&f:&e%player_level%'
       - '&6&m                         '
       - '&6 ▪ &6官网&f:&ewww.bitlie.net'
-      - '&6 ▪ &6群号&f:&e882535365'
+      - '&6 ▪ &6群号&f:&e1057650878'
 
 
 tab-list:
@@ -44,10 +41,12 @@ tab-list:
     - '&f&m                                   '
     - '&6服主QQ:&f1364596766'
     - '&e官网:&fwww.bitlie.net'
-    - '&6群号:&f882535365'
+    - '&6群号:&f1057650878'
     - '&f&m                                   '
   name-list: '&6[&e%vault_prefix%&6]&f%player_name%'
-
+  
+title-big-prefix: "<gradient:#EEC4A7:#FEDCEE>"
+title-small-prefix: "<gradient:#EEC4A7:#FEDCEE>"
 
 bossbar:
   enabled: true
@@ -61,10 +60,30 @@ bossbar:
     # SOLID        将血条设置为一个部分
     style: SOLID
     color: YELLOW # 仅限 1.9+ 服务器: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
-    text: '&e快加群:&6882535365 &e参加公会比赛吧! ✧*｡٩(ˊᗜˋ*)و✧*｡'
+    text: '&e快来官网:&6www.bitlie.net &e反馈意见吧! ✧*｡٩(ˊᗜˋ*)و✧*｡'
 
 
 join-broadcast:
   enabled: true
   title: '&6&l生存服'
   sub-title: '&e&l欢迎来到&6&lBitLie&e&l纯净服务器'
+
+join-message:
+  enabled: true
+  message: "&e玩家 &f%player_name% &e激动地加入了&6生存服"
+quit-message:
+  enabled: true
+  message: "&e玩家 &f%player_name% &e匆匆地离开了&6生存服"
+
+first-join-message:
+  enabled: true
+  message: "&e欢迎新玩家 &f%player_name% &e第一次来到&6生存服"
+
+join-motd:
+  enabled: true
+  messages:
+    - "&e&m                               "
+    - "&6 ▪ &e&l服务器于 &6&l2025.10.13 &e&l更新第&6&l 1 &e&l次"
+    - "&6 ▪ &e&l输入&6&l/update&e&l以查看更新"
+    - "&6 ▪ &e&l输入&6&l/notice&e&l以查看活动"
+    - "&e&m                               "

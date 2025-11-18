@@ -1,8 +1,9 @@
 package net.torosamy.beautifyMe.config;
 
-import net.torosamy.torosamyCore.config.TorosamyConfig;
+import net.torosamy.torosamyCore.config.IConfigManage;
 
-public class LangConfig extends TorosamyConfig {
+
+public class LangConfig implements IConfigManage {
     public String broadcastToggleOpen;
     public String broadcastToggleClose;
     public String broadcastDisabled;

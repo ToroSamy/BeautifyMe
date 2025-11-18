@@ -1,12 +1,4 @@
-scoreboard:
-  close: []
-  open: []
-broadcast:
-  close: []
-  open: []
-tab-list:
-  close: []
-  open: []
-bossbar:
-  close: []
-  open: []
+scoreboard: []
+broadcast: []
+tab-list: []
+bossbar: []
