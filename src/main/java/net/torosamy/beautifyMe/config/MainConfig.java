@@ -2,6 +2,7 @@ package net.torosamy.beautifyMe.config;
 
 
 import net.torosamy.torosamyCore.config.IConfigManage;
+
 import java.util.List;
 
 
@@ -10,8 +11,8 @@ public class MainConfig implements IConfigManage{
     public class Broadcast implements IConfigManage {
         public Boolean enabled;
         public Integer time;
-        public Boolean defaultAllStart;
         public List<List<String>> messages;
+        public String customPermission;
     }
 
 
@@ -19,8 +20,8 @@ public class MainConfig implements IConfigManage{
     public class ScoreBoard implements IConfigManage {
         public Boolean enabled;
         public Integer time;
-        public Boolean defaultAllStart;
-
+        public String customPermission;
+        
         public Board board = new Board();
         public class Board implements IConfigManage {
             public String title;
@@ -30,12 +31,16 @@ public class MainConfig implements IConfigManage{
 
     public TabList tabList = new TabList();
     public class TabList implements IConfigManage {
-        public Boolean enabled;
+        public Boolean headerEnabled;
+        public Boolean footerEnabled;
+        public Boolean nameListEnabled;
         public Integer time;
-        public Boolean defaultAllStart;
         public List<String> header;
         public List<String> footer;
         public String nameList;
+        public String customHeaderPermission;
+        public String customFooterPermission;
+        public String customNameListPermission;
     }
 
 
@@ -43,7 +48,6 @@ public class MainConfig implements IConfigManage{
     public class BossBar implements IConfigManage {
         public Boolean enabled;
         public Integer time;
-        public Boolean defaultAllStart;
 
         public Info info = new Info();
         public class Info implements IConfigManage {
@@ -58,18 +62,21 @@ public class MainConfig implements IConfigManage{
         public Boolean enabled;
         public String title;
         public String subTitle;
+        public String customPermission;
     }
 
     public JoinMessage joinMessage = new JoinMessage();
     public class JoinMessage implements IConfigManage {
         public Boolean enabled;
         public String message;
+        public String customPermission;
     }
 
     public QuitMessage quitMessage = new QuitMessage();
     public class QuitMessage implements IConfigManage {
         public Boolean enabled;
         public String message;
+        public String customPermission;
     }
 
     public FirstJoinMessage firstJoinMessage = new FirstJoinMessage();
@@ -78,10 +85,21 @@ public class MainConfig implements IConfigManage{
         public String message;
     }
     
+    public NameTag nameTag = new NameTag();
+    public class NameTag implements IConfigManage {
+        public Integer time;
+        public Boolean enabled;
+        public String prefix;
+        public String suffix;
+        public String below;
+        public String customPermission;
+    }
+    
     public JoinMotd joinMotd = new JoinMotd();
     public class JoinMotd implements IConfigManage {
         public Boolean enabled;
         public List<String> messages;
+        public String customPermission;
     }
     
     public String titleBigPrefix;

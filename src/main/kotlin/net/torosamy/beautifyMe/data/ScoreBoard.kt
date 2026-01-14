@@ -1,61 +1,129 @@
 package net.torosamy.beautifyMe.data
 
-import net.kyori.adventure.text.Component
+import net.minecraft.network.chat.IChatBaseComponent
+import net.minecraft.network.protocol.game.ClientboundResetScorePacket
+import net.minecraft.network.protocol.game.PacketPlayOutScoreboardDisplayObjective
+import net.minecraft.network.protocol.game.PacketPlayOutScoreboardObjective
+import net.minecraft.network.protocol.game.PacketPlayOutScoreboardScore
+import net.minecraft.world.scores.DisplaySlot
+import net.minecraft.world.scores.Scoreboard
+import net.minecraft.world.scores.ScoreboardObjective
+import net.minecraft.world.scores.criteria.IScoreboardCriteria
+import net.torosamy.beautifyMe.api.BeautifyMeAPI
 import net.torosamy.beautifyMe.utils.ConfigUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
-import org.bukkit.Bukkit
+import org.bukkit.craftbukkit.v1_21_R5.entity.CraftPlayer
 import org.bukkit.entity.Player
-import org.bukkit.scoreboard.DisplaySlot
-import org.bukkit.scoreboard.Objective
-import org.bukkit.scoreboard.Scoreboard
-import org.bukkit.scoreboard.Team
+import java.util.*
+
 
 class ScoreBoard {
-    private val lines: ArrayList<Team> = arrayListOf()
+    private val empty: ScoreboardObjective
 
     private val scoreboard: Scoreboard
-    
-    private var objective: Objective
 
-    public constructor(player: Player) {
-        this.scoreboard = Bukkit.getScoreboardManager().newScoreboard
+    private val objective: ScoreboardObjective
 
-        val titleComponent = MessageUtil.component(player, ConfigUtil.mainConfig.scoreboard.board.title)
+    private val username: String
+
+    private val lines: ArrayList<String> = arrayListOf()
+
+    private var inited: Boolean = false
+
+    public constructor(username: String) {
+        this.username = username
+
+        this.scoreboard = Scoreboard()
+
+        val title = BeautifyMeAPI.getUserdata(username).scoreBoardTitle ?: ConfigUtil.mainConfig.scoreboard.board.title
+
+        this.objective = ScoreboardObjective(
+            scoreboard,
+            this.username,
+            IScoreboardCriteria.c,
+            MessageUtil.nmsComponent(title),
+            IScoreboardCriteria.EnumScoreboardHealthDisplay.a,
+            false,
+            null
+        )
+
+        this.empty = ScoreboardObjective(
+            Scoreboard(),
+            this.username,
+            IScoreboardCriteria.c,
+            IChatBaseComponent.i(),
+            IScoreboardCriteria.EnumScoreboardHealthDisplay.a,
+            false,
+            null
+        );
+    }
+
+    private fun init(player: Player) {
+        if (inited) {
+            return
+        }
+
+        if (player.name != username || !player.isOnline) {
+            return
+        }
+
+        val nms = (player as CraftPlayer).handle
+
+        nms.g.b(PacketPlayOutScoreboardObjective(objective, 0))
+        nms.g.b(PacketPlayOutScoreboardDisplayObjective(DisplaySlot.b, objective))
+
+        this.lines.clear()
         
-        this.objective = this.scoreboard.registerNewObjective(player.name, "dummy", titleComponent)
+        val userdata = BeautifyMeAPI.getUserdata(username)
         
-        objective.displaySlot = DisplaySlot.SIDEBAR
+        if (!player.hasPermission(ConfigUtil.mainConfig.scoreboard.customPermission) || userdata.scoreBoardLines.isEmpty()) {
+            this.lines.addAll(ConfigUtil.mainConfig.scoreboard.board.lines)
+        }else {
+            this.lines.addAll(userdata.scoreBoardLines)
+        }
+
+        inited = true
+    }
+
+    public fun update(player: Player) {
+        init(player)
         
-        val lines = ConfigUtil.mainConfig.scoreboard.board.lines
+        if (player.name != username || !player.isOnline) {
+            return
+        }
+
+        val nms = (player as CraftPlayer).handle
 
         for (i in 0 until lines.size) {
-            val name = player.name + i
-
-            val line = scoreboard.registerNewTeam(name)
-            line.addEntry(name)
-
-            this.lines.add(line)
-
-            val score = this.objective.getScore(name)
-
-            score.score = lines.size - i
-            score.customName(Component.empty())
-        }
-    }
-    
-    public fun updateObjective(player: Player) {
-        objective.displayName(MessageUtil.component(player, ConfigUtil.mainConfig.scoreboard.board.title))
-        
-        val lines = ConfigUtil.mainConfig.scoreboard.board.lines
-        
-        for (i in 0 until this.lines.size) {
             val line = this.lines[i]
 
-            line.prefix = MessageUtil.format(player, lines[i])
+            val packet = PacketPlayOutScoreboardScore(
+                line,
+                player.name,
+                this.lines.size - i,
+                Optional.of(MessageUtil.nmsComponent(player, line)),
+                Optional.empty()
+            )
+
+            nms.g.b(packet)
         }
     }
-    
-    public fun register(player: Player) {
-        player.scoreboard =  this.scoreboard
+
+    public fun clear(player: Player) {
+        if (!inited) {
+            return
+        }
+        
+        if (player.name != username || !player.isOnline) {
+            return
+        }
+
+        (player as CraftPlayer).handle.g.b(PacketPlayOutScoreboardObjective(empty, 1))
+
+        this.lines.forEach{
+            player.handle.g.b(ClientboundResetScorePacket(it, player.name))
+        }
+
+        inited = false
     }
 }

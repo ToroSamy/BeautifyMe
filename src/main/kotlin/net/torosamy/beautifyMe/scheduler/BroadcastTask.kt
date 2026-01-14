@@ -6,26 +6,18 @@ import org.bukkit.scheduler.BukkitRunnable
 
 
 class BroadcastTask : BukkitRunnable() {
-    private var index : Int = 0
+    private var counts: Int = 0
 
     override fun run() {
-        if (!ConfigUtil.mainConfig.broadcast.enabled) {
-            Bukkit.getOnlinePlayers().forEach{
-                BeautifyMeAPI.stopBroadcast(it, false)
-            }
-
-            this.cancel()
+        if (counts != ConfigUtil.mainConfig.broadcast.time) {
+            counts ++
             return
         }
         
-        if (index >= ConfigUtil.mainConfig.broadcast.messages.size) {
-            index = 0
-        }
+        counts = 0
         
         for (player in Bukkit.getOnlinePlayers()) {
-            BeautifyMeAPI.broadcast(player, index)
+            BeautifyMeAPI.getUserdata(player.name).broadcast(player)
         }
-        
-        index++
     }
 }

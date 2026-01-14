@@ -1,15 +1,44 @@
 #不支持Papi变量 因为是自己用也懒得写变量
 broadcast-toggle-open: "&b[服务器娘]&a成功 &e开启 &a自动公告喵~"
 broadcast-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a自动公告喵~"
-broadcast-disabled: "&b[服务器娘]&a服务器没有启用 &e自动公告 &a喵~"
+
 scoreboard-toggle-open: "&b[服务器娘]&a成功 &e开启 &a计分板喵~"
 scoreboard-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a计分板喵~"
-scoreboard-disabled: "&b[服务器娘]&a服务器没有启用 &e计分板 &a喵~"
-tab-list-toggle-open: "&b[服务器娘]&a成功 &e开启 &aTab列表喵~"
-tab-list-toggle-close: "&b[服务器娘]&a成功 &e关闭 &aTab列表喵~"
-tab-list-disabled: "&b[服务器娘]&a服务器没有启用 &eTab列表 &a喵~"
+
+tab-list-header-toggle-open: "&b[服务器娘]&a成功 &e开启 &aTab 页眉喵~"
+tab-list-header-toggle-close: "&b[服务器娘]&a成功 &e关闭 &aTab 页眉喵~"
+
+tab-list-footer-toggle-open: "&b[服务器娘]&a成功 &e开启 &aTab 页脚喵~"
+tab-list-footer-toggle-close: "&b[服务器娘]&a成功 &e关闭 &aTab 页脚喵~"
+
+name-list-toggle-open: "&b[服务器娘]&a成功 &e开启 &aTab 列表喵~"
+name-list-toggle-close: "&b[服务器娘]&a成功 &e关闭 &aTab 列表喵~"
+
+join-broadcast-toggle-open: "&b[服务器娘]&a成功 &e开启 &a进服欢迎大标题喵~"
+join-broadcast-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a进服欢迎大标题喵~"
+
+join-message-toggle-open: "&b[服务器娘]&a成功 &e开启 &a上线提示喵~"
+join-message-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a上线提示喵~"
+
+quit-message-toggle-open: "&b[服务器娘]&a成功 &e开启 &a下线提示喵~"
+quit-message-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a下线提示喵~"
+
+join-motd-toggle-open: "&b[服务器娘]&a成功 &e开启 &a上线公告喵~"
+join-motd-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a上线公告喵~"
+
+
+name-tag-prefix-toggle-open: "&b[服务器娘]&a成功 &e开启 &a头顶前缀喵~"
+name-tag-prefix-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a头顶前缀喵~"
+
+name-tag-suffix-toggle-open: "&b[服务器娘]&a成功 &e开启 &a头顶后缀喵~"
+name-tag-suffix-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a头顶后缀喵~"
+
+
+name-tag-below-toggle-open: "&b[服务器娘]&a成功 &e开启 &a头顶下方信息喵~"
+name-tag-below-toggle-close: "&b[服务器娘]&a成功 &e关闭 &a头顶下方信息喵~"
+
 bossbar-toggle-open: "&b[服务器娘]&a成功 &e开启 &abossbar喵~"
 bossbar-toggle-close: "&b[服务器娘]&a成功 &e关闭 &abossbar喵~"
-bossbar-disabled: "&b[服务器娘]&a服务器没有启用 &ebossbar &a喵~"
+function-disabled: "&b[服务器娘]&a服务器没有启用该功能喵~"
 reload-message: "&b[服务器娘]&a插件 &eBeautifyMe &a重载成功喵~"
 send-success: "&b[服务器娘]&a发送成功!"

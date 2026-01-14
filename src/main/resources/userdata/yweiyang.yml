@@ -1,0 +1,11 @@
+username: yweiyang
+broadcastEnable: true
+scoreboardEnable: true
+tabHeaderEnable: true
+tabFooterEnable: true
+nameListForce: false
+nameListEnabled: true
+joinBroadcastEnable: true
+joinMessageEnable: true
+quitMessageEnable: true
+joinMotdEnable: true

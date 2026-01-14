@@ -1,8 +1,8 @@
 broadcast:
+  custom-permission: beautifyme.custom.broadcast
   enabled: true
   # 单位：秒
   time: 300
-  default-all-start: true
   messages:
     - - '&6&m                                                         '
       - '&b[服务器娘]&a群号:1057650878 官网:www.bitlie.net'
@@ -15,22 +15,34 @@ broadcast:
 scoreboard:
   enabled: true  # 单位：秒
   time: 5
-  default-all-start: true
+  custom-permission: beautifyme.custom.scoreboard
   board:
     title: '&6[ &eBitLie &6]'
     lines:
       - '&6&m                         '
+      - '&6 ▪ &6&l世界&f:&6[&e%multiverse-core_alias%&6]'
+      - '&6 ▪ &6&l公会&f:&6[&e%guild_prefix%&6]'
+      - '&6 ▪ &6&l成就&f:&6[&e%deluxetags_tag%&6]'
+      - '&6 ▪ &6&l称号&f:&6[&e%vault_prefix%&6]'
       - '&6 ▪ &6&l名称&f:&e%player_name%'
+      - '&6 ▪ &6&l积分&f:&e%vault_eco_balance_fixed%'
+      - '&6 ▪ &6&l血量&f:&e%player_health_rounded%'
+      - '&6 ▪ &6&l饥饿&f:&e%player_food_level%'
       - '&6 ▪ &6&l等级&f:&e%player_level%'
+      - '&6 ▪ &6&l点券&f:&e%playerpoints_points%'
       - '&6&m                         '
       - '&6 ▪ &6官网&f:&ewww.bitlie.net'
       - '&6 ▪ &6群号&f:&e1057650878'
 
 
 tab-list:
-  enabled: true
+  header-enabled: true
+  footer-enabled: true
+  name-list-enabled: true
+  custom-header-permission: beautifyme.custom.header
+  custom-footer-permission: beautifyme.custom.footer
+  custom-name-list-permission: beautifyme.custom.name.list
   time: 5
-  default-all-start: true
   header:
     - '&f&m                                   '
     - '&6BitLie'
@@ -43,15 +55,21 @@ tab-list:
     - '&e官网:&fwww.bitlie.net'
     - '&6群号:&f1057650878'
     - '&f&m                                   '
-  name-list: '&6[&e%vault_prefix%&6]&f%player_name%'
+  name-list: '&6[&e%guild_prefix%&6]&f&r%player_name%&6[&e%vault_prefix%&6]'
   
 title-big-prefix: "<gradient:#EEC4A7:#FEDCEE>"
 title-small-prefix: "<gradient:#EEC4A7:#FEDCEE>"
 
+name-tag:
+  time: 5
+  enabled: true
+  prefix: ""
+  suffix: ""
+  below: ""
+  custom-permission: beautifyme.custom.name.tag
 bossbar:
   enabled: true
   time: 5
-  default-all-start: true
   info:
     # SEGMENTED_10 将血条分为10个部分
     # SEGMENTED_12 将血条分为12个部分
@@ -64,14 +82,17 @@ bossbar:
 
 
 join-broadcast:
+  custom-permission: beautifyme.custom.join.broadcast
   enabled: true
   title: '&6&l生存服'
   sub-title: '&e&l欢迎来到&6&lBitLie&e&l纯净服务器'
 
 join-message:
+  custom-permission: beautifyme.custom.join.message
   enabled: true
   message: "&e玩家 &f%player_name% &e激动地加入了&6生存服"
 quit-message:
+  custom-permission: beautifyme.custom.quit.message
   enabled: true
   message: "&e玩家 &f%player_name% &e匆匆地离开了&6生存服"
 
@@ -81,9 +102,10 @@ first-join-message:
 
 join-motd:
   enabled: true
+  custom-permission: beautifyme.custom.join.motd
   messages:
-    - "&e&m                               "
-    - "&6 ▪ &e&l服务器于 &6&l2025.10.13 &e&l更新第&6&l 1 &e&l次"
-    - "&6 ▪ &e&l输入&6&l/update&e&l以查看更新"
-    - "&6 ▪ &e&l输入&6&l/notice&e&l以查看活动"
-    - "&e&m                               "
+    - '&e&m                               '
+    - '&6 ▪ &e&l服务器于 &6&l2025.11.24 &e&l更新第&6&l 1 &e&l次'
+    - '&6 ▪ &e&l输入&6&l/update&e&l以查看更新'
+    - '&6 ▪ &e&l输入&6&l/notice&e&l以查看活动'
+    - '&e&m                               '

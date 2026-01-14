@@ -10,18 +10,18 @@ import org.bukkit.scheduler.BukkitRunnable
 
 
 class ScoreboardTask : BukkitRunnable() {
-    override fun run() {
-        if (!ConfigUtil.mainConfig.scoreboard.enabled) {
-            Bukkit.getOnlinePlayers().forEach{
-                BeautifyMeAPI.stopScoreboard(it, false)
-            }
+    private var counts: Int = 0
 
-            this.cancel()
+    override fun run() {
+        if (counts != ConfigUtil.mainConfig.scoreboard.time) {
+            counts ++
             return
         }
 
+        counts = 0
+
         for (player in Bukkit.getOnlinePlayers()) {
-            BeautifyMeAPI.scoreboard(player)
+            BeautifyMeAPI.getUserdata(player.name).scoreboard(player)
         }
     }
 }

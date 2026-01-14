@@ -7,20 +7,22 @@ import org.bukkit.Bukkit
 import org.bukkit.scheduler.BukkitRunnable
 
 class TabListTask : BukkitRunnable() {
-    override fun run() {
-        if (!ConfigUtil.mainConfig.tabList.enabled) {
-            Bukkit.getOnlinePlayers().forEach{
-                BeautifyMeAPI.stopTabList(it, false)
-                BeautifyMeAPI.nameList(it)
-            }
+    private var counts: Int = 0
 
-            this.cancel()
+    override fun run() {
+        if (counts != ConfigUtil.mainConfig.tabList.time) {
+            counts ++
             return
         }
 
+        counts = 0
+
         for (player in Bukkit.getOnlinePlayers()) {
-            BeautifyMeAPI.tabList(player)
-            BeautifyMeAPI.nameList(player)
+            val userdata = BeautifyMeAPI.getUserdata(player.name)
+            
+            userdata.tabHeader(player)
+            userdata.tabFooter(player)
+            userdata.nameList(player)
         }
     }
 }
