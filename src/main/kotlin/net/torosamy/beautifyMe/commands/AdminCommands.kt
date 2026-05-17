@@ -1,17 +1,13 @@
 package net.torosamy.beautifyMe.commands
 import net.torosamy.beautifyMe.BeautifyMe
 import net.torosamy.beautifyMe.api.BeautifyMeAPI
-import net.torosamy.beautifyMe.scheduler.BossbarTask
-import net.torosamy.beautifyMe.scheduler.ScoreboardTask
-import net.torosamy.beautifyMe.scheduler.TabListTask
 import net.torosamy.beautifyMe.utils.ConfigUtil
-import net.torosamy.beautifyMe.utils.ListenerUtil
-import net.torosamy.beautifyMe.utils.SchedulerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import org.incendo.cloud.annotation.specifier.Greedy
 import org.incendo.cloud.annotations.Argument
 import org.incendo.cloud.annotations.Command
 import org.incendo.cloud.annotations.CommandDescription
@@ -29,7 +25,7 @@ class AdminCommands {
             BeautifyMeAPI.getUserdata(it.name).reloadScoreBoard(it)
         }
         
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.reloadMessage))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.reloadMessage))
     }
 
     @Command("bm toggle broadcast <player>")
@@ -37,16 +33,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的broadcast的开关闭状态")
     fun playerToggleBroadcastOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.broadcast.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleBroadcast()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.broadcastToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.broadcastToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.broadcastToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.broadcastToggleClose))
         return
     }
 
@@ -55,16 +51,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的scoreboard的开关闭状态")
     fun playerToggleScoreboardOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.scoreboard.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleScoreBoard(player)) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.scoreboardToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.scoreboardToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.scoreboardToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.scoreboardToggleClose))
         return
     }
 
@@ -73,16 +69,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的tab页眉的开关闭状态")
     fun playerToggleTabHeaderOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.tabList.headerEnabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleTabHeader(player)) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.tabListHeaderToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.tabListHeaderToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.tabListHeaderToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.tabListHeaderToggleClose))
         return
     }
 
@@ -92,16 +88,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的tab页脚的开关闭状态")
     fun playerToggleTabFooterOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.tabList.footerEnabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleTabFooter(player)) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.tabListFooterToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.tabListFooterToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.tabListFooterToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.tabListFooterToggleClose))
         return
     }
 
@@ -111,16 +107,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的tab列表的开关闭状态")
     fun playerToggleNameListOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.tabList.nameListEnabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleNameList(player)) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameListToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameListToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameListToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameListToggleClose))
         return
     }
 
@@ -129,16 +125,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的上线大标题的开关闭状态")
     fun playerToggleJoinBroadcastOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.joinBroadcast.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleJoinBroadcast()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.joinBroadcastToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.joinBroadcastToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.joinBroadcastToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.joinBroadcastToggleClose))
         return
     }
 
@@ -147,16 +143,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的上线公告的开关闭状态")
     fun playerToggleJoinMotdOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.joinMotd.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleJoinMotd()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.joinMotdToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.joinMotdToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.joinMotdToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.joinMotdToggleClose))
         return
     }
 
@@ -165,16 +161,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的上线消息的开关闭状态")
     fun playerToggleJoinMessageOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.joinMessage.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleJoinMessage()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.joinMessageToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.joinMessageToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.joinMessageToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.joinMessageToggleClose))
         return
     }
 
@@ -184,16 +180,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的下线消息的开关闭状态")
     fun playerToggleQuitMessageOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.quitMessage.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleQuitMessage()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.quitMessageToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.quitMessageToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.quitMessageToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.quitMessageToggleClose))
         return
     }
 
@@ -203,19 +199,36 @@ class AdminCommands {
     @CommandDescription("切换玩家的bossbar的开关闭状态")
     fun playerToggleBossbarOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.bossbar.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleBossbar(player)) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.bossbarToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.bossbarToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.bossbarToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.bossbarToggleClose))
         return
     }
 
+
+    @Command(value = "bm action-bar <message>")
+    @Permission("beautifyme.title.all")
+    @CommandDescription("向全服玩家发送action-bar")
+    fun sendActionBarToAll(sender: CommandSender, @Greedy@Argument("message") message: String) {
+        Bukkit.getOnlinePlayers().forEach{ player: Player ->
+            player.sendActionBar(MessageUtil.component(player, message))
+        }
+    }
+
+    @Command(value = "bm action-bar-player <player> <message>")
+    @Permission("beautifyme.title.single")
+    @CommandDescription("向玩家单独发送action-bar")
+    fun sendActionBarToSingle(sender: CommandSender, @Greedy@Argument("message") message: String, @Argument("player") player: Player) {
+        player.sendActionBar(MessageUtil.component(player, message))
+    }
+    
     @Command(value = "bm title <main> <sub>")
     @Permission("beautifyme.title.all")
     @CommandDescription("向全服玩家发送big-title")
@@ -228,7 +241,7 @@ class AdminCommands {
                 MessageUtil.format(player, ConfigUtil.mainConfig.titleSmallPrefix + subTitle)
             )
         }
-        BeautifyMe.plugin.server.consoleSender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.sendSuccess))
+        BeautifyMe.plugin.server.consoleSender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.sendSuccess))
     }
 
     @Command(value = "bm title <main> <sub> <player>")
@@ -239,7 +252,7 @@ class AdminCommands {
             MessageUtil.format(player, ConfigUtil.mainConfig.titleBigPrefix + mainTitle),
             MessageUtil.format(player, ConfigUtil.mainConfig.titleSmallPrefix + subTitle)
         )
-        BeautifyMe.plugin.server.consoleSender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.sendSuccess))
+        BeautifyMe.plugin.server.consoleSender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.sendSuccess))
     }
 
 
@@ -248,16 +261,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的NameTag前缀的开关闭状态")
     fun playerToggleNameTagPrefixOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.nameTag.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleNameTagPrefix()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameTagPrefixToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameTagPrefixToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameTagPrefixToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameTagPrefixToggleClose))
         return
     }
 
@@ -267,16 +280,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的NameTag后缀的开关闭状态")
     fun playerToggleNameTagSuffixOther(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.nameTag.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleNameTagSuffix()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameTagSuffixToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameTagSuffixToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameTagSuffixToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameTagSuffixToggleClose))
         return
     }
 
@@ -285,16 +298,16 @@ class AdminCommands {
     @CommandDescription("切换玩家的NameTag下方信息的开关闭状态")
     fun playerToggleNameTagBelowSelf(sender: CommandSender, @Argument("player") player: Player) {
         if(!ConfigUtil.mainConfig.nameTag.enabled) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.functionDisabled))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.functionDisabled))
             return
         }
 
         if (BeautifyMeAPI.getUserdata(player.name).toggleNameTagBelow()) {
-            sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameTagBelowToggleOpen))
+            sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameTagBelowToggleOpen))
             return
         }
 
-        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.nameTagBelowToggleClose))
+        sender.sendMessage(MessageUtil.component(ConfigUtil.langConfig.nameTagBelowToggleClose))
         return
     }
 }

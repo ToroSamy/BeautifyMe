@@ -586,13 +586,15 @@ class Userdata {
             return true
         }
 
-        getBossbar().style = BarStyle.valueOf(ConfigUtil.mainConfig.bossbar.info.style)
+        val bossbar = getBossbar()
 
-        getBossbar().color = BarColor.valueOf(ConfigUtil.mainConfig.bossbar.info.color)
+        bossbar.style = BarStyle.valueOf(ConfigUtil.mainConfig.bossbar.info.style)
 
-        getBossbar().setTitle(MessageUtil.format(player, ConfigUtil.mainConfig.bossbar.info.text))
+        bossbar.color = BarColor.valueOf(ConfigUtil.mainConfig.bossbar.info.color)
 
-        getBossbar().addPlayer(player)
+        bossbar.setTitle(MessageUtil.format(player, ConfigUtil.mainConfig.bossbar.info.text))
+
+        bossbar.addPlayer(player)
         
         return false
     }
